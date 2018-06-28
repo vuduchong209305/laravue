@@ -3,10 +3,10 @@
         <div class="wrapper">
 
             <header class="main-header">
-                <a href="index2.html" class="logo">
+                <router-link to="/" class="logo">
                     <span class="logo-mini"><b>A</b>LT</span>
                     <span class="logo-lg"><b>Admin</b>LTE</span>
-                </a>
+                </router-link>
                 <nav class="navbar navbar-static-top">
                     <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                         <span class="sr-only">Toggle navigation</span>
@@ -269,7 +269,7 @@
                         </div>
                         <div class="pull-left info">
                             <p>
-                                <a href="">Vũ Đức Hồng</a>
+                                <router-link to="profile">Vũ Đức Hồng</router-link>
                             </p>
                             <i class="fa fa-circle text-success"></i> Online
                         </div>
@@ -456,6 +456,8 @@
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
+
+                <router-view/>
 
             </div>
             <!-- /.content-wrapper -->

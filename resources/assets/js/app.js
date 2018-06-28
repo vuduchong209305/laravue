@@ -6,11 +6,15 @@
  */
 
 require('./bootstrap');
-
 window.Vue = require('vue');
+
 import App from './components/App'
+import router from './routes'
 
 const app = new Vue({
     el: '#app',
-    render: h => h(App)
-});
+    router,
+    render: h => h(App),
+})
+
+export default app
