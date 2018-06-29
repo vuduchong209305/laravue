@@ -21,10 +21,9 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <div id="app"></div>
-
+    
     <script src="public/js/app.js"></script>
 
-    <script src="public/admin/js/jquery.min.js"></script>
     <script src="public/admin/js/jquery-ui.min.js"></script>
     <script>
         $.widget.bridge('uibutton', $.ui.button);

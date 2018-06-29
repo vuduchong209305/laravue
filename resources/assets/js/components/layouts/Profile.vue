@@ -299,7 +299,8 @@
 		                            <div class="form-group">
 		                                <label class="col-sm-2 control-label">Name</label>
 		                                <div class="col-sm-10">
-		                                    <input type="text" class="form-control" placeholder="name" v-model="data_detail.name">
+		                                    <input type="text" class="form-control" placeholder="name" v-model="data_detail.name" v-validate="'required'" name="name">
+		                                	<font color="red">{{ errors.first('name') }}</font>
 		                                </div>
 		                            </div>
 
@@ -320,7 +321,8 @@
 		                            <div class="form-group">
 		                                <label class="col-sm-2 control-label">Phone <font color="red">*</font></label>
 		                                <div class="col-sm-10">
-		                                    <input type="text" class="form-control" placeholder="phone" v-model="data_detail.phone">
+		                                    <input type="text" class="form-control" placeholder="phone" v-model="data_detail.phone" v-validate="'required'" name="phone">
+		                                    <font color="red">{{ errors.first('phone') }}</font>
 		                                </div>
 		                            </div>
 
@@ -328,7 +330,8 @@
 		                                <label class="col-sm-2 control-label">Address <font color="red">*</font></label>
 
 		                                <div class="col-sm-10">
-		                                    <input type="text" class="form-control" placeholder="address" v-model="data_detail.address">
+		                                    <input type="text" class="form-control" placeholder="address" v-model="data_detail.address" v-validate="'required'" name="address">
+		                                    <font color="red">{{ errors.first('address') }}</font>
 		                                </div>
 		                            </div>
 
@@ -353,10 +356,11 @@
 </template>
 
 <script>
+
 	export default {
 		data() {
 			return {
-				data: {
+				data_detail: {
 					name : '',
 					password : '',
 					phone : '',
@@ -364,9 +368,26 @@
 				}
 			}
 		},
+		created() {
+			axios.get('https://jsonplaceholder.typicode.com/users', {
+			}).then(res => {
+				console.log(res)
+			}).catch(e => {
+				console.log(e)
+			});
+		},
 		methods: {
 			update() {
-
+				this.$validator.validate().then(result => {
+					if (!result) {
+						this.$notify({
+							group: 'foo',
+							title: 'Thông báo',
+							text: 'Bạn cần nhập đủ thông tin bắt buộc !',
+							type: 'warn',
+						});
+					}
+				});
 			}
 		}
 	}

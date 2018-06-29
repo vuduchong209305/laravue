@@ -1,9 +1,9 @@
 <template>
     <div id="app">
         <div class="wrapper">
-
+            <notifications group="foo" position="bottom right" />
             <header class="main-header">
-                <router-link to="/" class="logo">
+                <router-link :to="{ name : 'home' }" class="logo">
                     <span class="logo-mini"><b>A</b>LT</span>
                     <span class="logo-lg"><b>Admin</b>LTE</span>
                 </router-link>
@@ -40,7 +40,7 @@
                                             <li>
                                                 <a href="#">
                                                     <div class="pull-left">
-                                                        <img src="" class="img-circle" alt="User Image">
+                                                        <img src="public/admin/img/avatar.png" class="img-circle" alt="User Image">
                                                     </div>
                                                     <h4>
                         AdminLTE Design Team
@@ -218,7 +218,7 @@
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="" class="img-circle" alt="User Image">
+                                        <img src="public/admin/img/avatar.png" class="img-circle" alt="User Image">
 
                                         <p>
                                             <small>Member since Nov. 2012</small>
@@ -269,7 +269,7 @@
                         </div>
                         <div class="pull-left info">
                             <p>
-                                <router-link to="profile">Vũ Đức Hồng</router-link>
+                                <router-link :to="{ name : 'profile' }">Vũ Đức Hồng</router-link>
                             </p>
                             <i class="fa fa-circle text-success"></i> Online
                         </div>

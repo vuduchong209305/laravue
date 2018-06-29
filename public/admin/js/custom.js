@@ -55,4 +55,10 @@ $(document).ready(function(){
 			}
 		});
 	});
+
+	$('.dropdown').click(function(){
+		$(this).addClass('open')
+		$(this).find('.dropdown-toggle').attr('aria-expanded', true)
+	})
+	
 });
