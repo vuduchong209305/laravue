@@ -213,7 +213,7 @@
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <img src="public/admin/img/avatar.png" class="user-image" alt="User Image">
-                                    <span class="hidden-xs">vuduchong</span>
+                                    <span class="hidden-xs">{{ name }}</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
@@ -242,10 +242,10 @@
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="" class="btn btn-default btn-flat">Profile</a>
+                                            <router-link :to="{ name : 'profile' }" class="btn btn-default btn-flat">Profile</router-link>
                                         </div>
                                         <div class="pull-right">
-                                            <a href="" class="btn btn-default btn-flat">Sign out</a>
+                                            <a v-on:click="logout" class="btn btn-default btn-flat">Sign out</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -269,7 +269,7 @@
                         </div>
                         <div class="pull-left info">
                             <p>
-                                <router-link :to="{ name : 'profile' }">Vũ Đức Hồng</router-link>
+                                <router-link :to="{ name : 'profile' }">{{ name }}</router-link>
                             </p>
                             <i class="fa fa-circle text-success"></i> Online
                         </div>
@@ -659,3 +659,25 @@
         </div>
     </div>
 </template>
+
+<script>
+    export default {
+        data() {
+            return {
+                name : '',
+                email : '',
+                BASE_URL : ''
+            }
+        },
+        created() {
+            this.name = logged_in_name
+            this.email = logged_in_email
+            this.BASE_URL = BASE_URL
+        },
+        methods: {
+            logout() {
+                window.location.href = this.BASE_URL + 'admin/logout'
+            }
+        }
+    }
+</script>

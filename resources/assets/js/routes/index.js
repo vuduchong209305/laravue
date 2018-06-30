@@ -3,12 +3,12 @@ import profile from '../components/layouts/Profile'
 
 export default [
 	{
-		path: '/',
+		path: '/admin/home',
 		component : home,
 		name : 'home'
 	},
 	{
-		path: '/profile',
+		path: '/admin/profile',
 		component : profile,
 		name : 'profile'
 	}

@@ -18,6 +18,12 @@
     <link rel="stylesheet" href="public/admin/css/bootstrap3-wysihtml5.min.css">
     <link rel="stylesheet" href="public/admin/css/jquery.toast.css">
     <link rel="stylesheet" href="public/admin/css/custom.css">
+
+    <script>
+        var BASE_URL = '<?php echo url('/') . '/' ?>'
+        var logged_in_name = '<?php echo Auth::user()->name ? Auth::user()->name : '' ?>'
+        var logged_in_email = '<?php echo Auth::user()->email ? Auth::user()->email : '' ?>'
+    </script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <div id="app"></div>
