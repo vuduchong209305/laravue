@@ -213,7 +213,7 @@
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <img src="public/admin/img/avatar.png" class="user-image" alt="User Image">
-                                    <span class="hidden-xs">{{ name }}</span>
+                                    <span class="hidden-xs">{{ logged_in_name }}</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
@@ -269,7 +269,7 @@
                         </div>
                         <div class="pull-left info">
                             <p>
-                                <router-link :to="{ name : 'profile' }">{{ name }}</router-link>
+                                <router-link :to="{ name : 'profile' }">{{ logged_in_name }}</router-link>
                             </p>
                             <i class="fa fa-circle text-success"></i> Online
                         </div>
@@ -664,14 +664,18 @@
     export default {
         data() {
             return {
-                name : '',
-                email : '',
+                logged_in_name : '',
+                logged_in_email : '',
+                logged_in_phone : '',
+                logged_in_address : '',
                 BASE_URL : ''
             }
         },
         created() {
-            this.name = logged_in_name
-            this.email = logged_in_email
+            this.logged_in_name = _name
+            this.logged_in_email = _email
+            this.logged_in_phone = _phone
+            this.logged_in_address = _address
             this.BASE_URL = BASE_URL
         },
         methods: {

@@ -25,6 +25,11 @@ const router = new VueRouter({
 	mode: 'history'
 })
 
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title
+  next()
+})
+
 router.beforeResolve((to, from, next) => {
 	if (to.name) {
 		NProgress.start()

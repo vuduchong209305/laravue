@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Auth;
 use File;
+use Validator;
 
 class UserController extends Controller
 {
@@ -74,29 +76,34 @@ class UserController extends Controller
 
     public function updateProfile(Request $request) {
 
-        $input = request()->validate([
-                    'name' => 'required',
-                    'phone' => 'required|',
-                    'address' => 'required'
-                ],
-                [
-                    'name.required'   => 'Name không bỏ trống',
-                    'phone.required'   => 'Số điện thoại không bỏ trống',
-                    'address.required' => 'Địa chỉ không bỏ trống'
-                ]);
+        $validator = Validator::make($request->data, [
+            'name' => 'required',
+            'phone' => 'required',
+            'address' => 'required'
+        ]);
 
-        $user = new User();
+        if ($validator->passes()) {
 
-        $user->name = $request->name;
-        $user->phone = $request->phone;
-        $user->address = $request->address;
+            $user = User::find($request->data['id']);
+            $user->name = $request->data['name'];
+            $user->phone = $request->data['phone'];
+            $user->address = $request->data['address'];
 
-        $user->save();
+            if($request->data['password'] != '') {
+                $user->password = Hash::make($request->data['password']);
+            }
 
-        return redirect()->route('profile');
+            $user->save();
+            $status = 'OK';
+            
+        } else {
+            $status = $validator->errors();
+        }
+
+        return response()->json($status);
     }
 
     public function index() {
-        return view('home');
+        return view('admin.home');
     }
 }

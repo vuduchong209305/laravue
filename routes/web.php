@@ -9,14 +9,15 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
 	Route::group(['middleware' => 'login'], function() {
 
 		Route::get('home', ['as' => 'home', 'uses' => 'UserController@index']);
-		
-		Route::any('{all}', 'UserController@getLogin')->where(['all' => '.*']);
 
+		Route::post('updateProfile', 'UserController@updateProfile');
 		
-		Route::post('upload-avatar', 'UserController@upload');
-
-		Route::post('update-profile', ['as' => 'updateProfile', 'uses' => 'UserController@updateProfile']);
 	});
-	
+
 });
 
+// Route::any('{all}', 'UserController@getLogin')->where(['all' => '.*']);
+
+Route::any('{all}', function () {
+    return view('admin.home');
+})->where(['all' => '.*']);

@@ -314,7 +314,7 @@
 		                            <div class="form-group">
 		                                <label class="col-sm-2 control-label">Email <font color="red">*</font></label>
 		                                <div class="col-sm-10">
-		                                    <input type="email" class="form-control" placeholder="email" readonly>
+		                                    <input type="email" class="form-control" placeholder="email" readonly v-model="data_detail.email">
 		                                </div>
 		                            </div>
 
@@ -361,15 +361,21 @@
 		data() {
 			return {
 				data_detail: {
+					id : '',
 					name : '',
 					password : '',
+					email : '',
 					phone : '',
 					address : ''
 				}
 			}
 		},
 		created() {
-
+			this.data_detail.id = _id
+			this.data_detail.name = _name
+			this.data_detail.email = _email
+			this.data_detail.phone = _phone
+			this.data_detail.address = _address
 		},
 		methods: {
 			update() {
@@ -380,9 +386,35 @@
 							title: 'Thông báo',
 							text: 'Bạn cần nhập đủ thông tin bắt buộc !',
 							type: 'warn',
-						});
+						})
+
+					} else {
+
+						axios.post(BASE_URL + 'admin/updateProfile', {
+							data : this.data_detail
+						}).then(res => {
+							if(res.data == 'OK') {
+								this.$notify({
+									group: 'foo',
+									title: 'Thông báo',
+									text: 'Cập nhật thành công !',
+									type: 'success',
+								})
+
+							} else {
+
+								this.$notify({
+									group: 'foo',
+									title: 'Thông báo',
+									text: 'Bạn cần nhập đủ thông tin bắt buộc !',
+									type: 'warn',
+								});
+							}
+						}).catch(e => {
+							console.log(e)
+						})
 					}
-				});
+				})
 			}
 		}
 	}

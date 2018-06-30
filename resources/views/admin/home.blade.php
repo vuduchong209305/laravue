@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel + VueJS</title>
+    <title></title>
     <base href="{{ asset('') }}">
     <meta id="csrf-token" name="csrf-token" value="{{ csrf_token() }}">
 
@@ -21,8 +21,11 @@
 
     <script>
         var BASE_URL = '<?php echo url('/') . '/' ?>'
-        var logged_in_name = '<?php echo Auth::user()->name ? Auth::user()->name : '' ?>'
-        var logged_in_email = '<?php echo Auth::user()->email ? Auth::user()->email : '' ?>'
+        var _id = '<?php echo Auth::user()->name ? Auth::user()->id : '' ?>'
+        var _name = '<?php echo Auth::user()->name ? Auth::user()->name : '' ?>'
+        var _email = '<?php echo Auth::user()->email ? Auth::user()->email : '' ?>'
+        var _phone = '<?php echo Auth::user()->name ? Auth::user()->phone : '' ?>'
+        var _address = '<?php echo Auth::user()->email ? Auth::user()->address : '' ?>'
     </script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
