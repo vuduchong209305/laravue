@@ -370,8 +370,7 @@
 					phone : '',
 					address : ''
 				},
-				avatar : '',
-				preview : ''
+				avatar : ''
 			}
 		},
 		created() {

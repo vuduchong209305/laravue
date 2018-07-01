@@ -43828,76 +43828,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -44091,9 +44021,7 @@ var render = function() {
               "ul",
               { staticClass: "sidebar-menu", attrs: { "data-widget": "tree" } },
               [
-                _c("li", { staticClass: "header" }, [
-                  _vm._v("MAIN NAVIGATION")
-                ]),
+                _c("li", { staticClass: "header" }, [_vm._v("QUẢN LÝ CHÍNH")]),
                 _vm._v(" "),
                 _c(
                   "li",
@@ -44102,7 +44030,7 @@ var render = function() {
                     _c("router-link", { attrs: { to: { name: "home" } } }, [
                       _c("i", { staticClass: "fa fa-dashboard" }),
                       _vm._v(" "),
-                      _c("span", [_vm._v("Dashboard")])
+                      _c("span", [_vm._v("Trang chủ")])
                     ])
                   ],
                   1
@@ -44120,23 +44048,13 @@ var render = function() {
                 _vm._v(" "),
                 _vm._m(13),
                 _vm._v(" "),
+                _c("li", { staticClass: "header" }, [_vm._v("QUẢN LÝ CHUNG")]),
+                _vm._v(" "),
                 _vm._m(14),
                 _vm._v(" "),
                 _vm._m(15),
                 _vm._v(" "),
-                _vm._m(16),
-                _vm._v(" "),
-                _vm._m(17),
-                _vm._v(" "),
-                _vm._m(18),
-                _vm._v(" "),
-                _c("li", { staticClass: "header" }, [_vm._v("LABELS")]),
-                _vm._v(" "),
-                _vm._m(19),
-                _vm._v(" "),
-                _vm._m(20),
-                _vm._v(" "),
-                _vm._m(21)
+                _vm._m(16)
               ]
             )
           ])
@@ -44144,9 +44062,9 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "content-wrapper" }, [_c("router-view")], 1),
         _vm._v(" "),
-        _vm._m(22),
+        _vm._m(17),
         _vm._v(" "),
-        _vm._m(23),
+        _vm._m(18),
         _vm._v(" "),
         _c("div", { staticClass: "control-sidebar-bg" })
       ],
@@ -44636,75 +44554,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("li", { staticClass: "treeview" }, [
       _c("a", { attrs: { href: "#" } }, [
-        _c("i", { staticClass: "fa fa-files-o" }),
-        _vm._v(" "),
-        _c("span", [_vm._v("Layout Options")]),
-        _vm._v(" "),
-        _c("span", { staticClass: "pull-right-container" }, [
-          _c("span", { staticClass: "label label-primary pull-right" }, [
-            _vm._v("4")
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("ul", { staticClass: "treeview-menu" }, [
-        _c("li", [
-          _c("a", { attrs: { href: "pages/layout/top-nav.html" } }, [
-            _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" Top Navigation")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "pages/layout/boxed.html" } }, [
-            _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" Boxed")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "pages/layout/fixed.html" } }, [
-            _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" Fixed")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "pages/layout/collapsed-sidebar.html" } }, [
-            _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" Collapsed Sidebar")
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "pages/widgets.html" } }, [
-        _c("i", { staticClass: "fa fa-th" }),
-        _vm._v(" "),
-        _c("span", [_vm._v("Widgets")]),
-        _vm._v(" "),
-        _c("span", { staticClass: "pull-right-container" }, [
-          _c("small", { staticClass: "label pull-right bg-green" }, [
-            _vm._v("new")
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "treeview" }, [
-      _c("a", { attrs: { href: "#" } }, [
         _c("i", { staticClass: "fa fa-pie-chart" }),
         _vm._v(" "),
-        _c("span", [_vm._v("Charts")]),
+        _c("span", [_vm._v("Quản lý tài khoản")]),
         _vm._v(" "),
         _c("span", { staticClass: "pull-right-container" }, [
           _c("i", { staticClass: "fa fa-angle-left pull-right" })
@@ -44715,28 +44567,14 @@ var staticRenderFns = [
         _c("li", [
           _c("a", { attrs: { href: "pages/charts/chartjs.html" } }, [
             _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" ChartJS")
+            _vm._v(" Ban Quản Trị")
           ])
         ]),
         _vm._v(" "),
         _c("li", [
           _c("a", { attrs: { href: "pages/charts/morris.html" } }, [
             _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" Morris")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "pages/charts/flot.html" } }, [
-            _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" Flot")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "pages/charts/inline.html" } }, [
-            _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" Inline charts")
+            _vm._v(" Người dùng")
           ])
         ])
       ])
@@ -44750,7 +44588,7 @@ var staticRenderFns = [
       _c("a", { attrs: { href: "#" } }, [
         _c("i", { staticClass: "fa fa-laptop" }),
         _vm._v(" "),
-        _c("span", [_vm._v("UI Elements")]),
+        _c("span", [_vm._v("Quản lý sản phẩm")]),
         _vm._v(" "),
         _c("span", { staticClass: "pull-right-container" }, [
           _c("i", { staticClass: "fa fa-angle-left pull-right" })
@@ -44761,42 +44599,35 @@ var staticRenderFns = [
         _c("li", [
           _c("a", { attrs: { href: "pages/UI/general.html" } }, [
             _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" General")
+            _vm._v(" Danh sách")
           ])
         ]),
         _vm._v(" "),
         _c("li", [
           _c("a", { attrs: { href: "pages/UI/icons.html" } }, [
             _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" Icons")
+            _vm._v(" Nhập kho")
           ])
         ]),
         _vm._v(" "),
         _c("li", [
           _c("a", { attrs: { href: "pages/UI/buttons.html" } }, [
             _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" Buttons")
+            _vm._v(" Xuất kho")
           ])
         ]),
         _vm._v(" "),
         _c("li", [
           _c("a", { attrs: { href: "pages/UI/sliders.html" } }, [
             _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" Sliders")
+            _vm._v(" Báo cáo tài chính")
           ])
         ]),
         _vm._v(" "),
         _c("li", [
           _c("a", { attrs: { href: "pages/UI/timeline.html" } }, [
             _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" Timeline")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "pages/UI/modals.html" } }, [
-            _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" Modals")
+            _vm._v(" Biểu đồ tăng trưởng")
           ])
         ])
       ])
@@ -44810,7 +44641,7 @@ var staticRenderFns = [
       _c("a", { attrs: { href: "#" } }, [
         _c("i", { staticClass: "fa fa-edit" }),
         _vm._v(" "),
-        _c("span", [_vm._v("Forms")]),
+        _c("span", [_vm._v("Quản lý tin tức")]),
         _vm._v(" "),
         _c("span", { staticClass: "pull-right-container" }, [
           _c("i", { staticClass: "fa fa-angle-left pull-right" })
@@ -44821,21 +44652,14 @@ var staticRenderFns = [
         _c("li", [
           _c("a", { attrs: { href: "pages/forms/general.html" } }, [
             _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" General Elements")
+            _vm._v(" Chuyên mục")
           ])
         ]),
         _vm._v(" "),
         _c("li", [
           _c("a", { attrs: { href: "pages/forms/advanced.html" } }, [
             _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" Advanced Elements")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "pages/forms/editors.html" } }, [
-            _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" Editors")
+            _vm._v(" Tin tức")
           ])
         ])
       ])
@@ -44849,7 +44673,7 @@ var staticRenderFns = [
       _c("a", { attrs: { href: "#" } }, [
         _c("i", { staticClass: "fa fa-table" }),
         _vm._v(" "),
-        _c("span", [_vm._v("Tables")]),
+        _c("span", [_vm._v("Quản lý cửa hàng")]),
         _vm._v(" "),
         _c("span", { staticClass: "pull-right-container" }, [
           _c("i", { staticClass: "fa fa-angle-left pull-right" })
@@ -44860,61 +44684,15 @@ var staticRenderFns = [
         _c("li", [
           _c("a", { attrs: { href: "pages/tables/simple.html" } }, [
             _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" Simple tables")
+            _vm._v(" Danh sách")
           ])
         ]),
         _vm._v(" "),
         _c("li", [
           _c("a", { attrs: { href: "pages/tables/data.html" } }, [
             _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" Data tables")
+            _vm._v(" Nhân viên")
           ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "pages/calendar.html" } }, [
-        _c("i", { staticClass: "fa fa-calendar" }),
-        _vm._v(" "),
-        _c("span", [_vm._v("Calendar")]),
-        _vm._v(" "),
-        _c("span", { staticClass: "pull-right-container" }, [
-          _c("small", { staticClass: "label pull-right bg-red" }, [
-            _vm._v("3")
-          ]),
-          _vm._v(" "),
-          _c("small", { staticClass: "label pull-right bg-blue" }, [
-            _vm._v("17")
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "pages/mailbox/mailbox.html" } }, [
-        _c("i", { staticClass: "fa fa-envelope" }),
-        _vm._v(" "),
-        _c("span", [_vm._v("Mailbox")]),
-        _vm._v(" "),
-        _c("span", { staticClass: "pull-right-container" }, [
-          _c("small", { staticClass: "label pull-right bg-yellow" }, [
-            _vm._v("12")
-          ]),
-          _vm._v(" "),
-          _c("small", { staticClass: "label pull-right bg-green" }, [
-            _vm._v("16")
-          ]),
-          _vm._v(" "),
-          _c("small", { staticClass: "label pull-right bg-red" }, [_vm._v("5")])
         ])
       ])
     ])
@@ -44927,7 +44705,7 @@ var staticRenderFns = [
       _c("a", { attrs: { href: "#" } }, [
         _c("i", { staticClass: "fa fa-folder" }),
         _vm._v(" "),
-        _c("span", [_vm._v("Examples")]),
+        _c("span", [_vm._v("Quản lý đối tác")]),
         _vm._v(" "),
         _c("span", { staticClass: "pull-right-container" }, [
           _c("i", { staticClass: "fa fa-angle-left pull-right" })
@@ -44938,63 +44716,21 @@ var staticRenderFns = [
         _c("li", [
           _c("a", { attrs: { href: "pages/examples/invoice.html" } }, [
             _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" Invoice")
+            _vm._v(" Đối tác cung cấp")
           ])
         ]),
         _vm._v(" "),
         _c("li", [
           _c("a", { attrs: { href: "pages/examples/profile.html" } }, [
             _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" Profile")
+            _vm._v(" Đối tác tiêu thụ")
           ])
         ]),
         _vm._v(" "),
         _c("li", [
           _c("a", { attrs: { href: "pages/examples/login.html" } }, [
             _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" Login")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "pages/examples/register.html" } }, [
-            _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" Register")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "pages/examples/lockscreen.html" } }, [
-            _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" Lockscreen")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "pages/examples/404.html" } }, [
-            _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" 404 Error")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "pages/examples/500.html" } }, [
-            _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" 500 Error")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "pages/examples/blank.html" } }, [
-            _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" Blank Page")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "pages/examples/pace.html" } }, [
-            _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" Pace Page")
+            _vm._v(" Đối tác liên kết")
           ])
         ])
       ])
@@ -45008,7 +44744,7 @@ var staticRenderFns = [
       _c("a", { attrs: { href: "#" } }, [
         _c("i", { staticClass: "fa fa-share" }),
         _vm._v(" "),
-        _c("span", [_vm._v("Multilevel")]),
+        _c("span", [_vm._v("Quản lý website")]),
         _vm._v(" "),
         _c("span", { staticClass: "pull-right-container" }, [
           _c("i", { staticClass: "fa fa-angle-left pull-right" })
@@ -45019,73 +44755,23 @@ var staticRenderFns = [
         _c("li", [
           _c("a", { attrs: { href: "#" } }, [
             _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" Level One")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "treeview" }, [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" Level One\n            "),
-            _c("span", { staticClass: "pull-right-container" }, [
-              _c("i", { staticClass: "fa fa-angle-left pull-right" })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("ul", { staticClass: "treeview-menu" }, [
-            _c("li", [
-              _c("a", { attrs: { href: "#" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" Level Two")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "treeview" }, [
-              _c("a", { attrs: { href: "#" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" Level Two\n                "),
-                _c("span", { staticClass: "pull-right-container" }, [
-                  _c("i", { staticClass: "fa fa-angle-left pull-right" })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("ul", { staticClass: "treeview-menu" }, [
-                _c("li", [
-                  _c("a", { attrs: { href: "#" } }, [
-                    _c("i", { staticClass: "fa fa-circle-o" }),
-                    _vm._v(" Level Three")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("a", { attrs: { href: "#" } }, [
-                    _c("i", { staticClass: "fa fa-circle-o" }),
-                    _vm._v(" Level Three")
-                  ])
-                ])
-              ])
-            ])
+            _vm._v(" Menu")
           ])
         ]),
         _vm._v(" "),
         _c("li", [
           _c("a", { attrs: { href: "#" } }, [
             _c("i", { staticClass: "fa fa-circle-o" }),
-            _vm._v(" Level One")
+            _vm._v(" Side")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "#" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" Chính sách & quy định")
           ])
         ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "https://adminlte.io/docs" } }, [
-        _c("i", { staticClass: "fa fa-book" }),
-        _vm._v(" "),
-        _c("span", [_vm._v("Documentation")])
       ])
     ])
   },
@@ -45097,7 +44783,7 @@ var staticRenderFns = [
       _c("a", { attrs: { href: "#" } }, [
         _c("i", { staticClass: "fa fa-circle-o text-red" }),
         _vm._v(" "),
-        _c("span", [_vm._v("Important")])
+        _c("span", [_vm._v("Cấu hình chung")])
       ])
     ])
   },
@@ -45109,7 +44795,7 @@ var staticRenderFns = [
       _c("a", { attrs: { href: "#" } }, [
         _c("i", { staticClass: "fa fa-circle-o text-yellow" }),
         _vm._v(" "),
-        _c("span", [_vm._v("Warning")])
+        _c("span", [_vm._v("Lịch sử hệ thống")])
       ])
     ])
   },
@@ -45121,7 +44807,7 @@ var staticRenderFns = [
       _c("a", { attrs: { href: "#" } }, [
         _c("i", { staticClass: "fa fa-circle-o text-aqua" }),
         _vm._v(" "),
-        _c("span", [_vm._v("Information")])
+        _c("span", [_vm._v("Phân quyền")])
       ])
     ])
   },
@@ -60014,8 +59700,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				phone: '',
 				address: ''
 			},
-			avatar: '',
-			preview: ''
+			avatar: ''
 		};
 	},
 	created: function created() {
