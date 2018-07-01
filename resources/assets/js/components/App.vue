@@ -212,13 +212,13 @@
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="public/admin/img/avatar.png" class="user-image" alt="User Image">
+                                    <img :src="!logged_in_avatar ? '/public/admin/img/no-image.png' : logged_in_avatar" class="user-image" alt="User Image">
                                     <span class="hidden-xs">{{ logged_in_name }}</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="public/admin/img/avatar.png" class="img-circle" alt="User Image">
+                                        <img :src="!logged_in_avatar ? '/public/admin/img/no-image.png' : logged_in_avatar" class="img-circle" alt="User Image">
 
                                         <p>
                                             <small>Member since Nov. 2012</small>
@@ -265,7 +265,7 @@
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="public/admin/img/avatar.png" class="img-circle" alt="User Image">
+                            <img :src="!logged_in_avatar ? '/public/admin/img/no-image.png' : logged_in_avatar" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
                             <p>
@@ -289,9 +289,9 @@
                     <ul class="sidebar-menu" data-widget="tree">
                         <li class="header">MAIN NAVIGATION</li>
                         <li class="">
-                            <a href="">
+                            <router-link :to="{name : 'home'}">
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-                            </a>
+                            </router-link>
                         </li>
                         <li class="treeview">
                             <a href="#">
@@ -668,6 +668,7 @@
                 logged_in_email : '',
                 logged_in_phone : '',
                 logged_in_address : '',
+                logged_in_avatar : '',
                 BASE_URL : ''
             }
         },
@@ -676,6 +677,7 @@
             this.logged_in_email = _email
             this.logged_in_phone = _phone
             this.logged_in_address = _address
+            this.logged_in_avatar = _avatar
             this.BASE_URL = BASE_URL
         },
         methods: {

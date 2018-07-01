@@ -21,11 +21,12 @@
 
     <script>
         var BASE_URL = '<?php echo url('/') . '/' ?>'
-        var _id = '<?php echo Auth::user()->name ? Auth::user()->id : '' ?>'
+        var _id = '<?php echo Auth::user()->id ? Auth::user()->id : '' ?>'
         var _name = '<?php echo Auth::user()->name ? Auth::user()->name : '' ?>'
         var _email = '<?php echo Auth::user()->email ? Auth::user()->email : '' ?>'
-        var _phone = '<?php echo Auth::user()->name ? Auth::user()->phone : '' ?>'
-        var _address = '<?php echo Auth::user()->email ? Auth::user()->address : '' ?>'
+        var _phone = '<?php echo Auth::user()->phone ? Auth::user()->phone : '' ?>'
+        var _address = '<?php echo Auth::user()->address ? Auth::user()->address : '' ?>'
+        var _avatar = '<?php echo Auth::user()->avatar ? Auth::user()->avatar : '' ?>'
     </script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">

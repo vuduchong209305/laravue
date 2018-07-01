@@ -24,3 +24,7 @@ body {
     opacity: 0;
     cursor: pointer;
 }
+
+img {
+    cursor: pointer;
+}

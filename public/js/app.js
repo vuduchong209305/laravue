@@ -402,106 +402,6 @@ module.exports = g;
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-var utils = __webpack_require__(0);
-var normalizeHeaderName = __webpack_require__(22);
-
-var DEFAULT_CONTENT_TYPE = {
-  'Content-Type': 'application/x-www-form-urlencoded'
-};
-
-function setContentTypeIfUnset(headers, value) {
-  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
-    headers['Content-Type'] = value;
-  }
-}
-
-function getDefaultAdapter() {
-  var adapter;
-  if (typeof XMLHttpRequest !== 'undefined') {
-    // For browsers use XHR adapter
-    adapter = __webpack_require__(6);
-  } else if (typeof process !== 'undefined') {
-    // For node use HTTP adapter
-    adapter = __webpack_require__(6);
-  }
-  return adapter;
-}
-
-var defaults = {
-  adapter: getDefaultAdapter(),
-
-  transformRequest: [function transformRequest(data, headers) {
-    normalizeHeaderName(headers, 'Content-Type');
-    if (utils.isFormData(data) ||
-      utils.isArrayBuffer(data) ||
-      utils.isBuffer(data) ||
-      utils.isStream(data) ||
-      utils.isFile(data) ||
-      utils.isBlob(data)
-    ) {
-      return data;
-    }
-    if (utils.isArrayBufferView(data)) {
-      return data.buffer;
-    }
-    if (utils.isURLSearchParams(data)) {
-      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
-      return data.toString();
-    }
-    if (utils.isObject(data)) {
-      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
-      return JSON.stringify(data);
-    }
-    return data;
-  }],
-
-  transformResponse: [function transformResponse(data) {
-    /*eslint no-param-reassign:0*/
-    if (typeof data === 'string') {
-      try {
-        data = JSON.parse(data);
-      } catch (e) { /* Ignore */ }
-    }
-    return data;
-  }],
-
-  timeout: 0,
-
-  xsrfCookieName: 'XSRF-TOKEN',
-  xsrfHeaderName: 'X-XSRF-TOKEN',
-
-  maxContentLength: -1,
-
-  validateStatus: function validateStatus(status) {
-    return status >= 200 && status < 300;
-  }
-};
-
-defaults.headers = {
-  common: {
-    'Accept': 'application/json, text/plain, */*'
-  }
-};
-
-utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
-  defaults.headers[method] = {};
-});
-
-utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
-  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
-});
-
-module.exports = defaults;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
-
-/***/ }),
-/* 3 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -608,6 +508,106 @@ module.exports = function normalizeComponent (
   }
 }
 
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+var utils = __webpack_require__(0);
+var normalizeHeaderName = __webpack_require__(22);
+
+var DEFAULT_CONTENT_TYPE = {
+  'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+function setContentTypeIfUnset(headers, value) {
+  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
+    headers['Content-Type'] = value;
+  }
+}
+
+function getDefaultAdapter() {
+  var adapter;
+  if (typeof XMLHttpRequest !== 'undefined') {
+    // For browsers use XHR adapter
+    adapter = __webpack_require__(6);
+  } else if (typeof process !== 'undefined') {
+    // For node use HTTP adapter
+    adapter = __webpack_require__(6);
+  }
+  return adapter;
+}
+
+var defaults = {
+  adapter: getDefaultAdapter(),
+
+  transformRequest: [function transformRequest(data, headers) {
+    normalizeHeaderName(headers, 'Content-Type');
+    if (utils.isFormData(data) ||
+      utils.isArrayBuffer(data) ||
+      utils.isBuffer(data) ||
+      utils.isStream(data) ||
+      utils.isFile(data) ||
+      utils.isBlob(data)
+    ) {
+      return data;
+    }
+    if (utils.isArrayBufferView(data)) {
+      return data.buffer;
+    }
+    if (utils.isURLSearchParams(data)) {
+      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
+      return data.toString();
+    }
+    if (utils.isObject(data)) {
+      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
+      return JSON.stringify(data);
+    }
+    return data;
+  }],
+
+  transformResponse: [function transformResponse(data) {
+    /*eslint no-param-reassign:0*/
+    if (typeof data === 'string') {
+      try {
+        data = JSON.parse(data);
+      } catch (e) { /* Ignore */ }
+    }
+    return data;
+  }],
+
+  timeout: 0,
+
+  xsrfCookieName: 'XSRF-TOKEN',
+  xsrfHeaderName: 'X-XSRF-TOKEN',
+
+  maxContentLength: -1,
+
+  validateStatus: function validateStatus(status) {
+    return status >= 200 && status < 300;
+  }
+};
+
+defaults.headers = {
+  common: {
+    'Accept': 'application/json, text/plain, */*'
+  }
+};
+
+utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
+  defaults.headers[method] = {};
+});
+
+utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
+});
+
+module.exports = defaults;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 /* 4 */
@@ -12048,15 +12048,15 @@ module.exports = __webpack_require__(12);
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_App__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_App___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_App__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_notification__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_notification__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_notification___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue_notification__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_nprogress__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_nprogress__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_nprogress___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_nprogress__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__node_modules_nprogress_nprogress_css__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__node_modules_nprogress_nprogress_css__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__node_modules_nprogress_nprogress_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__node_modules_nprogress_nprogress_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vee_validate__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__routes__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vee_validate__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__routes__ = __webpack_require__(51);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -12080,32 +12080,32 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_2_vue_notification___default.a);
 Vue.use(__WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* default */]);
 
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
-  routes: __WEBPACK_IMPORTED_MODULE_6__routes__["a" /* default */],
-  mode: 'history'
+	routes: __WEBPACK_IMPORTED_MODULE_6__routes__["a" /* default */],
+	mode: 'history'
 });
 
 router.beforeEach(function (to, from, next) {
-  document.title = to.meta.title;
-  next();
+	document.title = to.meta.title;
+	next();
 });
 
 router.beforeResolve(function (to, from, next) {
-  if (to.name) {
-    __WEBPACK_IMPORTED_MODULE_3_nprogress___default.a.start();
-  }
-  next();
+	if (to.name) {
+		__WEBPACK_IMPORTED_MODULE_3_nprogress___default.a.start();
+	}
+	next();
 });
 
 router.afterEach(function () {
-  __WEBPACK_IMPORTED_MODULE_3_nprogress___default.a.done();
+	__WEBPACK_IMPORTED_MODULE_3_nprogress___default.a.done();
 });
 
 var app = new Vue({
-  el: '#app',
-  router: router,
-  render: function render(h) {
-    return h(__WEBPACK_IMPORTED_MODULE_0__components_App___default.a);
-  }
+	el: '#app',
+	router: router,
+	render: function render(h) {
+		return h(__WEBPACK_IMPORTED_MODULE_0__components_App___default.a);
+	}
 });
 
 /* harmony default export */ __webpack_exports__["default"] = (app);
@@ -42046,7 +42046,7 @@ module.exports = __webpack_require__(19);
 var utils = __webpack_require__(0);
 var bind = __webpack_require__(4);
 var Axios = __webpack_require__(21);
-var defaults = __webpack_require__(2);
+var defaults = __webpack_require__(3);
 
 /**
  * Create an instance of Axios
@@ -42129,7 +42129,7 @@ function isSlowBuffer (obj) {
 "use strict";
 
 
-var defaults = __webpack_require__(2);
+var defaults = __webpack_require__(3);
 var utils = __webpack_require__(0);
 var InterceptorManager = __webpack_require__(30);
 var dispatchRequest = __webpack_require__(31);
@@ -42670,7 +42670,7 @@ module.exports = InterceptorManager;
 var utils = __webpack_require__(0);
 var transformData = __webpack_require__(32);
 var isCancel = __webpack_require__(8);
-var defaults = __webpack_require__(2);
+var defaults = __webpack_require__(3);
 var isAbsoluteURL = __webpack_require__(33);
 var combineURLs = __webpack_require__(34);
 
@@ -43188,11 +43188,11 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(57)
+var __vue_script__ = __webpack_require__(40)
 /* template */
-var __vue_template__ = __webpack_require__(40)
+var __vue_template__ = __webpack_require__(41)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -43232,6 +43232,702 @@ module.exports = Component.exports
 
 /***/ }),
 /* 40 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            logged_in_name: '',
+            logged_in_email: '',
+            logged_in_phone: '',
+            logged_in_address: '',
+            logged_in_avatar: '',
+            BASE_URL: ''
+        };
+    },
+    created: function created() {
+        this.logged_in_name = _name;
+        this.logged_in_email = _email;
+        this.logged_in_phone = _phone;
+        this.logged_in_address = _address;
+        this.logged_in_avatar = _avatar;
+        this.BASE_URL = BASE_URL;
+    },
+
+    methods: {
+        logout: function logout() {
+            window.location.href = this.BASE_URL + 'admin/logout';
+        }
+    }
+});
+
+/***/ }),
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -43289,7 +43985,9 @@ var render = function() {
                         _c("img", {
                           staticClass: "user-image",
                           attrs: {
-                            src: "public/admin/img/avatar.png",
+                            src: !_vm.logged_in_avatar
+                              ? "/public/admin/img/no-image.png"
+                              : _vm.logged_in_avatar,
                             alt: "User Image"
                           }
                         }),
@@ -43301,7 +43999,19 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     _c("ul", { staticClass: "dropdown-menu" }, [
-                      _vm._m(4),
+                      _c("li", { staticClass: "user-header" }, [
+                        _c("img", {
+                          staticClass: "img-circle",
+                          attrs: {
+                            src: !_vm.logged_in_avatar
+                              ? "/public/admin/img/no-image.png"
+                              : _vm.logged_in_avatar,
+                            alt: "User Image"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm._m(4)
+                      ]),
                       _vm._v(" "),
                       _vm._m(5),
                       _vm._v(" "),
@@ -43347,7 +44057,17 @@ var render = function() {
         _c("aside", { staticClass: "main-sidebar" }, [
           _c("section", { staticClass: "sidebar" }, [
             _c("div", { staticClass: "user-panel" }, [
-              _vm._m(7),
+              _c("div", { staticClass: "pull-left image" }, [
+                _c("img", {
+                  staticClass: "img-circle",
+                  attrs: {
+                    src: !_vm.logged_in_avatar
+                      ? "/public/admin/img/no-image.png"
+                      : _vm.logged_in_avatar,
+                    alt: "User Image"
+                  }
+                })
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "pull-left info" }, [
                 _c(
@@ -43365,17 +44085,68 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._m(8),
+            _vm._m(7),
             _vm._v(" "),
-            _vm._m(9)
+            _c(
+              "ul",
+              { staticClass: "sidebar-menu", attrs: { "data-widget": "tree" } },
+              [
+                _c("li", { staticClass: "header" }, [
+                  _vm._v("MAIN NAVIGATION")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {},
+                  [
+                    _c("router-link", { attrs: { to: { name: "home" } } }, [
+                      _c("i", { staticClass: "fa fa-dashboard" }),
+                      _vm._v(" "),
+                      _c("span", [_vm._v("Dashboard")])
+                    ])
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _vm._m(8),
+                _vm._v(" "),
+                _vm._m(9),
+                _vm._v(" "),
+                _vm._m(10),
+                _vm._v(" "),
+                _vm._m(11),
+                _vm._v(" "),
+                _vm._m(12),
+                _vm._v(" "),
+                _vm._m(13),
+                _vm._v(" "),
+                _vm._m(14),
+                _vm._v(" "),
+                _vm._m(15),
+                _vm._v(" "),
+                _vm._m(16),
+                _vm._v(" "),
+                _vm._m(17),
+                _vm._v(" "),
+                _vm._m(18),
+                _vm._v(" "),
+                _c("li", { staticClass: "header" }, [_vm._v("LABELS")]),
+                _vm._v(" "),
+                _vm._m(19),
+                _vm._v(" "),
+                _vm._m(20),
+                _vm._v(" "),
+                _vm._m(21)
+              ]
+            )
           ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "content-wrapper" }, [_c("router-view")], 1),
         _vm._v(" "),
-        _vm._m(10),
+        _vm._m(22),
         _vm._v(" "),
-        _vm._m(11),
+        _vm._m(23),
         _vm._v(" "),
         _c("div", { staticClass: "control-sidebar-bg" })
       ],
@@ -43799,14 +44570,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "user-header" }, [
-      _c("img", {
-        staticClass: "img-circle",
-        attrs: { src: "public/admin/img/avatar.png", alt: "User Image" }
-      }),
-      _vm._v(" "),
-      _c("p", [_c("small", [_vm._v("Member since Nov. 2012")])])
-    ])
+    return _c("p", [_c("small", [_vm._v("Member since Nov. 2012")])])
   },
   function() {
     var _vm = this
@@ -43842,17 +44606,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "pull-left image" }, [
-      _c("img", {
-        staticClass: "img-circle",
-        attrs: { src: "public/admin/img/avatar.png", alt: "User Image" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c(
       "form",
       { staticClass: "sidebar-form", attrs: { action: "#", method: "get" } },
@@ -43881,366 +44634,399 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "ul",
-      { staticClass: "sidebar-menu", attrs: { "data-widget": "tree" } },
-      [
-        _c("li", { staticClass: "header" }, [_vm._v("MAIN NAVIGATION")]),
+    return _c("li", { staticClass: "treeview" }, [
+      _c("a", { attrs: { href: "#" } }, [
+        _c("i", { staticClass: "fa fa-files-o" }),
         _vm._v(" "),
-        _c("li", {}, [
-          _c("a", { attrs: { href: "" } }, [
-            _c("i", { staticClass: "fa fa-dashboard" }),
-            _vm._v(" "),
-            _c("span", [_vm._v("Dashboard")])
+        _c("span", [_vm._v("Layout Options")]),
+        _vm._v(" "),
+        _c("span", { staticClass: "pull-right-container" }, [
+          _c("span", { staticClass: "label label-primary pull-right" }, [
+            _vm._v("4")
           ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "treeview" }, [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("i", { staticClass: "fa fa-files-o" }),
-            _vm._v(" "),
-            _c("span", [_vm._v("Layout Options")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "pull-right-container" }, [
-              _c("span", { staticClass: "label label-primary pull-right" }, [
-                _vm._v("4")
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("ul", { staticClass: "treeview-menu" }, [
-            _c("li", [
-              _c("a", { attrs: { href: "pages/layout/top-nav.html" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" Top Navigation")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "pages/layout/boxed.html" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" Boxed")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "pages/layout/fixed.html" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" Fixed")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c(
-                "a",
-                { attrs: { href: "pages/layout/collapsed-sidebar.html" } },
-                [
-                  _c("i", { staticClass: "fa fa-circle-o" }),
-                  _vm._v(" Collapsed Sidebar")
-                ]
-              )
-            ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("ul", { staticClass: "treeview-menu" }, [
+        _c("li", [
+          _c("a", { attrs: { href: "pages/layout/top-nav.html" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" Top Navigation")
           ])
         ]),
         _vm._v(" "),
         _c("li", [
-          _c("a", { attrs: { href: "pages/widgets.html" } }, [
-            _c("i", { staticClass: "fa fa-th" }),
-            _vm._v(" "),
-            _c("span", [_vm._v("Widgets")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "pull-right-container" }, [
-              _c("small", { staticClass: "label pull-right bg-green" }, [
-                _vm._v("new")
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "treeview" }, [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("i", { staticClass: "fa fa-pie-chart" }),
-            _vm._v(" "),
-            _c("span", [_vm._v("Charts")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "pull-right-container" }, [
-              _c("i", { staticClass: "fa fa-angle-left pull-right" })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("ul", { staticClass: "treeview-menu" }, [
-            _c("li", [
-              _c("a", { attrs: { href: "pages/charts/chartjs.html" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" ChartJS")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "pages/charts/morris.html" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" Morris")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "pages/charts/flot.html" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" Flot")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "pages/charts/inline.html" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" Inline charts")
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "treeview" }, [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("i", { staticClass: "fa fa-laptop" }),
-            _vm._v(" "),
-            _c("span", [_vm._v("UI Elements")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "pull-right-container" }, [
-              _c("i", { staticClass: "fa fa-angle-left pull-right" })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("ul", { staticClass: "treeview-menu" }, [
-            _c("li", [
-              _c("a", { attrs: { href: "pages/UI/general.html" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" General")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "pages/UI/icons.html" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" Icons")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "pages/UI/buttons.html" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" Buttons")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "pages/UI/sliders.html" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" Sliders")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "pages/UI/timeline.html" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" Timeline")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "pages/UI/modals.html" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" Modals")
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "treeview" }, [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("i", { staticClass: "fa fa-edit" }),
-            _vm._v(" "),
-            _c("span", [_vm._v("Forms")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "pull-right-container" }, [
-              _c("i", { staticClass: "fa fa-angle-left pull-right" })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("ul", { staticClass: "treeview-menu" }, [
-            _c("li", [
-              _c("a", { attrs: { href: "pages/forms/general.html" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" General Elements")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "pages/forms/advanced.html" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" Advanced Elements")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "pages/forms/editors.html" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" Editors")
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "treeview" }, [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("i", { staticClass: "fa fa-table" }),
-            _vm._v(" "),
-            _c("span", [_vm._v("Tables")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "pull-right-container" }, [
-              _c("i", { staticClass: "fa fa-angle-left pull-right" })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("ul", { staticClass: "treeview-menu" }, [
-            _c("li", [
-              _c("a", { attrs: { href: "pages/tables/simple.html" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" Simple tables")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "pages/tables/data.html" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" Data tables")
-              ])
-            ])
+          _c("a", { attrs: { href: "pages/layout/boxed.html" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" Boxed")
           ])
         ]),
         _vm._v(" "),
         _c("li", [
-          _c("a", { attrs: { href: "pages/calendar.html" } }, [
-            _c("i", { staticClass: "fa fa-calendar" }),
-            _vm._v(" "),
-            _c("span", [_vm._v("Calendar")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "pull-right-container" }, [
-              _c("small", { staticClass: "label pull-right bg-red" }, [
-                _vm._v("3")
-              ]),
-              _vm._v(" "),
-              _c("small", { staticClass: "label pull-right bg-blue" }, [
-                _vm._v("17")
-              ])
-            ])
+          _c("a", { attrs: { href: "pages/layout/fixed.html" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" Fixed")
           ])
         ]),
         _vm._v(" "),
         _c("li", [
-          _c("a", { attrs: { href: "pages/mailbox/mailbox.html" } }, [
-            _c("i", { staticClass: "fa fa-envelope" }),
-            _vm._v(" "),
-            _c("span", [_vm._v("Mailbox")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "pull-right-container" }, [
-              _c("small", { staticClass: "label pull-right bg-yellow" }, [
-                _vm._v("12")
-              ]),
-              _vm._v(" "),
-              _c("small", { staticClass: "label pull-right bg-green" }, [
-                _vm._v("16")
-              ]),
-              _vm._v(" "),
-              _c("small", { staticClass: "label pull-right bg-red" }, [
-                _vm._v("5")
-              ])
-            ])
+          _c("a", { attrs: { href: "pages/layout/collapsed-sidebar.html" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" Collapsed Sidebar")
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "pages/widgets.html" } }, [
+        _c("i", { staticClass: "fa fa-th" }),
+        _vm._v(" "),
+        _c("span", [_vm._v("Widgets")]),
+        _vm._v(" "),
+        _c("span", { staticClass: "pull-right-container" }, [
+          _c("small", { staticClass: "label pull-right bg-green" }, [
+            _vm._v("new")
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "treeview" }, [
+      _c("a", { attrs: { href: "#" } }, [
+        _c("i", { staticClass: "fa fa-pie-chart" }),
+        _vm._v(" "),
+        _c("span", [_vm._v("Charts")]),
+        _vm._v(" "),
+        _c("span", { staticClass: "pull-right-container" }, [
+          _c("i", { staticClass: "fa fa-angle-left pull-right" })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("ul", { staticClass: "treeview-menu" }, [
+        _c("li", [
+          _c("a", { attrs: { href: "pages/charts/chartjs.html" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" ChartJS")
           ])
         ]),
         _vm._v(" "),
-        _c("li", { staticClass: "treeview" }, [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("i", { staticClass: "fa fa-folder" }),
-            _vm._v(" "),
-            _c("span", [_vm._v("Examples")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "pull-right-container" }, [
-              _c("i", { staticClass: "fa fa-angle-left pull-right" })
-            ])
+        _c("li", [
+          _c("a", { attrs: { href: "pages/charts/morris.html" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" Morris")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "pages/charts/flot.html" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" Flot")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "pages/charts/inline.html" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" Inline charts")
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "treeview" }, [
+      _c("a", { attrs: { href: "#" } }, [
+        _c("i", { staticClass: "fa fa-laptop" }),
+        _vm._v(" "),
+        _c("span", [_vm._v("UI Elements")]),
+        _vm._v(" "),
+        _c("span", { staticClass: "pull-right-container" }, [
+          _c("i", { staticClass: "fa fa-angle-left pull-right" })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("ul", { staticClass: "treeview-menu" }, [
+        _c("li", [
+          _c("a", { attrs: { href: "pages/UI/general.html" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" General")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "pages/UI/icons.html" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" Icons")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "pages/UI/buttons.html" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" Buttons")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "pages/UI/sliders.html" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" Sliders")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "pages/UI/timeline.html" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" Timeline")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "pages/UI/modals.html" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" Modals")
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "treeview" }, [
+      _c("a", { attrs: { href: "#" } }, [
+        _c("i", { staticClass: "fa fa-edit" }),
+        _vm._v(" "),
+        _c("span", [_vm._v("Forms")]),
+        _vm._v(" "),
+        _c("span", { staticClass: "pull-right-container" }, [
+          _c("i", { staticClass: "fa fa-angle-left pull-right" })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("ul", { staticClass: "treeview-menu" }, [
+        _c("li", [
+          _c("a", { attrs: { href: "pages/forms/general.html" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" General Elements")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "pages/forms/advanced.html" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" Advanced Elements")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "pages/forms/editors.html" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" Editors")
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "treeview" }, [
+      _c("a", { attrs: { href: "#" } }, [
+        _c("i", { staticClass: "fa fa-table" }),
+        _vm._v(" "),
+        _c("span", [_vm._v("Tables")]),
+        _vm._v(" "),
+        _c("span", { staticClass: "pull-right-container" }, [
+          _c("i", { staticClass: "fa fa-angle-left pull-right" })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("ul", { staticClass: "treeview-menu" }, [
+        _c("li", [
+          _c("a", { attrs: { href: "pages/tables/simple.html" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" Simple tables")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "pages/tables/data.html" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" Data tables")
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "pages/calendar.html" } }, [
+        _c("i", { staticClass: "fa fa-calendar" }),
+        _vm._v(" "),
+        _c("span", [_vm._v("Calendar")]),
+        _vm._v(" "),
+        _c("span", { staticClass: "pull-right-container" }, [
+          _c("small", { staticClass: "label pull-right bg-red" }, [
+            _vm._v("3")
           ]),
           _vm._v(" "),
-          _c("ul", { staticClass: "treeview-menu" }, [
-            _c("li", [
-              _c("a", { attrs: { href: "pages/examples/invoice.html" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" Invoice")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "pages/examples/profile.html" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" Profile")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "pages/examples/login.html" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" Login")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "pages/examples/register.html" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" Register")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "pages/examples/lockscreen.html" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" Lockscreen")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "pages/examples/404.html" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" 404 Error")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "pages/examples/500.html" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" 500 Error")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "pages/examples/blank.html" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" Blank Page")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "pages/examples/pace.html" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" Pace Page")
-              ])
-            ])
+          _c("small", { staticClass: "label pull-right bg-blue" }, [
+            _vm._v("17")
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "pages/mailbox/mailbox.html" } }, [
+        _c("i", { staticClass: "fa fa-envelope" }),
+        _vm._v(" "),
+        _c("span", [_vm._v("Mailbox")]),
+        _vm._v(" "),
+        _c("span", { staticClass: "pull-right-container" }, [
+          _c("small", { staticClass: "label pull-right bg-yellow" }, [
+            _vm._v("12")
+          ]),
+          _vm._v(" "),
+          _c("small", { staticClass: "label pull-right bg-green" }, [
+            _vm._v("16")
+          ]),
+          _vm._v(" "),
+          _c("small", { staticClass: "label pull-right bg-red" }, [_vm._v("5")])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "treeview" }, [
+      _c("a", { attrs: { href: "#" } }, [
+        _c("i", { staticClass: "fa fa-folder" }),
+        _vm._v(" "),
+        _c("span", [_vm._v("Examples")]),
+        _vm._v(" "),
+        _c("span", { staticClass: "pull-right-container" }, [
+          _c("i", { staticClass: "fa fa-angle-left pull-right" })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("ul", { staticClass: "treeview-menu" }, [
+        _c("li", [
+          _c("a", { attrs: { href: "pages/examples/invoice.html" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" Invoice")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "pages/examples/profile.html" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" Profile")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "pages/examples/login.html" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" Login")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "pages/examples/register.html" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" Register")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "pages/examples/lockscreen.html" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" Lockscreen")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "pages/examples/404.html" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" 404 Error")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "pages/examples/500.html" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" 500 Error")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "pages/examples/blank.html" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" Blank Page")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "pages/examples/pace.html" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" Pace Page")
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "treeview" }, [
+      _c("a", { attrs: { href: "#" } }, [
+        _c("i", { staticClass: "fa fa-share" }),
+        _vm._v(" "),
+        _c("span", [_vm._v("Multilevel")]),
+        _vm._v(" "),
+        _c("span", { staticClass: "pull-right-container" }, [
+          _c("i", { staticClass: "fa fa-angle-left pull-right" })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("ul", { staticClass: "treeview-menu" }, [
+        _c("li", [
+          _c("a", { attrs: { href: "#" } }, [
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" Level One")
           ])
         ]),
         _vm._v(" "),
         _c("li", { staticClass: "treeview" }, [
           _c("a", { attrs: { href: "#" } }, [
-            _c("i", { staticClass: "fa fa-share" }),
-            _vm._v(" "),
-            _c("span", [_vm._v("Multilevel")]),
-            _vm._v(" "),
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" Level One\n            "),
             _c("span", { staticClass: "pull-right-container" }, [
               _c("i", { staticClass: "fa fa-angle-left pull-right" })
             ])
@@ -44250,14 +45036,14 @@ var staticRenderFns = [
             _c("li", [
               _c("a", { attrs: { href: "#" } }, [
                 _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" Level One")
+                _vm._v(" Level Two")
               ])
             ]),
             _vm._v(" "),
             _c("li", { staticClass: "treeview" }, [
               _c("a", { attrs: { href: "#" } }, [
                 _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" Level One\n            "),
+                _vm._v(" Level Two\n                "),
                 _c("span", { staticClass: "pull-right-container" }, [
                   _c("i", { staticClass: "fa fa-angle-left pull-right" })
                 ])
@@ -44267,82 +45053,77 @@ var staticRenderFns = [
                 _c("li", [
                   _c("a", { attrs: { href: "#" } }, [
                     _c("i", { staticClass: "fa fa-circle-o" }),
-                    _vm._v(" Level Two")
+                    _vm._v(" Level Three")
                   ])
                 ]),
                 _vm._v(" "),
-                _c("li", { staticClass: "treeview" }, [
+                _c("li", [
                   _c("a", { attrs: { href: "#" } }, [
                     _c("i", { staticClass: "fa fa-circle-o" }),
-                    _vm._v(" Level Two\n                "),
-                    _c("span", { staticClass: "pull-right-container" }, [
-                      _c("i", { staticClass: "fa fa-angle-left pull-right" })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("ul", { staticClass: "treeview-menu" }, [
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("i", { staticClass: "fa fa-circle-o" }),
-                        _vm._v(" Level Three")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("i", { staticClass: "fa fa-circle-o" }),
-                        _vm._v(" Level Three")
-                      ])
-                    ])
+                    _vm._v(" Level Three")
                   ])
                 ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "#" } }, [
-                _c("i", { staticClass: "fa fa-circle-o" }),
-                _vm._v(" Level One")
               ])
             ])
           ])
         ]),
         _vm._v(" "),
         _c("li", [
-          _c("a", { attrs: { href: "https://adminlte.io/docs" } }, [
-            _c("i", { staticClass: "fa fa-book" }),
-            _vm._v(" "),
-            _c("span", [_vm._v("Documentation")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "header" }, [_vm._v("LABELS")]),
-        _vm._v(" "),
-        _c("li", [
           _c("a", { attrs: { href: "#" } }, [
-            _c("i", { staticClass: "fa fa-circle-o text-red" }),
-            _vm._v(" "),
-            _c("span", [_vm._v("Important")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("i", { staticClass: "fa fa-circle-o text-yellow" }),
-            _vm._v(" "),
-            _c("span", [_vm._v("Warning")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("i", { staticClass: "fa fa-circle-o text-aqua" }),
-            _vm._v(" "),
-            _c("span", [_vm._v("Information")])
+            _c("i", { staticClass: "fa fa-circle-o" }),
+            _vm._v(" Level One")
           ])
         ])
-      ]
-    )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "https://adminlte.io/docs" } }, [
+        _c("i", { staticClass: "fa fa-book" }),
+        _vm._v(" "),
+        _c("span", [_vm._v("Documentation")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "#" } }, [
+        _c("i", { staticClass: "fa fa-circle-o text-red" }),
+        _vm._v(" "),
+        _c("span", [_vm._v("Important")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "#" } }, [
+        _c("i", { staticClass: "fa fa-circle-o text-yellow" }),
+        _vm._v(" "),
+        _c("span", [_vm._v("Warning")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "#" } }, [
+        _c("i", { staticClass: "fa fa-circle-o text-aqua" }),
+        _vm._v(" "),
+        _c("span", [_vm._v("Information")])
+      ])
+    ])
   },
   function() {
     var _vm = this
@@ -44706,7 +45487,7 @@ if (false) {
 }
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47336,7 +48117,7 @@ if (inBrowser && window.Vue) {
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -48457,7 +49238,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_20__;
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/* NProgress, (c) 2013, 2014 Rico Sta. Cruz - http://ricostacruz.com/nprogress
@@ -48943,13 +49724,13 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/* NProgress, 
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(45);
+var content = __webpack_require__(46);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -48957,7 +49738,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(47)(content, options);
+var update = __webpack_require__(48)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -48974,10 +49755,10 @@ if(false) {
 }
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(46)(false);
+exports = module.exports = __webpack_require__(47)(false);
 // imports
 
 
@@ -48988,7 +49769,7 @@ exports.push([module.i, "/* Make clicks pass-through */\n#nprogress {\n  pointer
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports) {
 
 /*
@@ -49070,7 +49851,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -49116,7 +49897,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(48);
+var	fixUrls = __webpack_require__(49);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -49429,7 +50210,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports) {
 
 
@@ -49524,7 +50305,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57239,13 +58020,13 @@ var index_esm = {
 
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_Home__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_Home__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_Home___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_Home__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_Profile__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_Profile__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_Profile___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_layouts_Profile__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_layouts_Page404__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_layouts_Page404___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_layouts_Page404__);
@@ -57256,7 +58037,8 @@ var index_esm = {
 /* harmony default export */ __webpack_exports__["a"] = ([{
 	path: '/admin/home',
 	component: __WEBPACK_IMPORTED_MODULE_0__components_layouts_Home___default.a,
-	name: 'home'
+	name: 'home',
+	meta: { title: 'Home' }
 }, {
 	path: '/admin/profile',
 	component: __WEBPACK_IMPORTED_MODULE_1__components_layouts_Profile___default.a,
@@ -57269,15 +58051,15 @@ var index_esm = {
 }]);
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(52)
+var __vue_script__ = __webpack_require__(53)
 /* template */
-var __vue_template__ = __webpack_require__(53)
+var __vue_template__ = __webpack_require__(54)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -57316,7 +58098,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57830,7 +58612,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -58808,15 +59590,15 @@ if (false) {
 }
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(55)
+var __vue_script__ = __webpack_require__(56)
 /* template */
-var __vue_template__ = __webpack_require__(56)
+var __vue_template__ = __webpack_require__(57)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -58855,11 +59637,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -59229,7 +60013,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				email: '',
 				phone: '',
 				address: ''
-			}
+			},
+			avatar: '',
+			preview: ''
 		};
 	},
 	created: function created() {
@@ -59238,6 +60024,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		this.data_detail.email = _email;
 		this.data_detail.phone = _phone;
 		this.data_detail.address = _address;
+		this.avatar = _avatar;
 	},
 
 	methods: {
@@ -59278,12 +60065,44 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 					});
 				}
 			});
+		},
+		onImageChange: function onImageChange(e) {
+			var _this2 = this;
+
+			this.avatar = this.$refs.avatar.files[0];
+			var formData = new FormData();
+			formData.append('image', this.avatar);
+
+			axios.post(BASE_URL + 'admin/updateAvatar', formData, {
+				headers: {
+					'Content-Type': 'multipart/form-data'
+				}
+			}).then(function (res) {
+				if (res.data == 'OK') {
+					if (e.target.files && e.target.files[0]) {
+						var reader = new FileReader();
+						reader.onload = function (e) {
+							_this2.avatar = e.target.result;
+						};
+						reader.readAsDataURL(e.target.files[0]);
+					}
+
+					_this2.$notify({
+						group: 'foo',
+						title: 'Thông báo',
+						text: 'Cập nhật thành công !',
+						type: 'success'
+					});
+				}
+			}).catch(function (error) {
+				console.log(error);
+			});
 		}
 	}
 });
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -59295,16 +60114,56 @@ var render = function() {
     _vm._v(" "),
     _c("section", { staticClass: "content" }, [
       _c("div", { staticClass: "row" }, [
-        _vm._m(1),
+        _c("div", { staticClass: "col-md-3" }, [
+          _c("div", { staticClass: "box box-primary" }, [
+            _c("div", { staticClass: "box-body box-profile" }, [
+              _c("img", {
+                staticClass:
+                  "profile-user-img img-responsive img-circle preview",
+                attrs: {
+                  src: !_vm.avatar
+                    ? "/public/admin/img/no-image.png"
+                    : _vm.avatar,
+                  title: "Thay ảnh đại diện",
+                  "data-toggle": "tooltip",
+                  onclick: "document.getElementById('fileInput').click()"
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                ref: "avatar",
+                staticClass: "hidden",
+                attrs: {
+                  type: "file",
+                  id: "fileInput",
+                  accept: ".png, .jpg, .jpeg"
+                },
+                on: { change: _vm.onImageChange }
+              }),
+              _vm._v(" "),
+              _c("h3", { staticClass: "profile-username text-center" }),
+              _vm._v(" "),
+              _c("p", { staticClass: "text-muted text-center" }, [
+                _vm._v(_vm._s(_vm.data_detail.name))
+              ]),
+              _vm._v(" "),
+              _vm._m(1),
+              _vm._v(" "),
+              _vm._m(2)
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(3)
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-9" }, [
           _c("div", { staticClass: "nav-tabs-custom" }, [
-            _vm._m(2),
+            _vm._m(4),
             _vm._v(" "),
             _c("div", { staticClass: "tab-content" }, [
-              _vm._m(3),
+              _vm._m(5),
               _vm._v(" "),
-              _vm._m(4),
+              _vm._m(6),
               _vm._v(" "),
               _c(
                 "div",
@@ -59626,118 +60485,104 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-3" }, [
-      _c("div", { staticClass: "box box-primary" }, [
-        _c("div", { staticClass: "box-body box-profile" }, [
-          _c("img", {
-            staticClass: "profile-user-img img-responsive img-circle preview",
-            attrs: {
-              src: "public/admin/img/avatar.png",
-              alt: "User profile picture"
-            }
-          }),
-          _vm._v(" "),
-          _c("h3", { staticClass: "profile-username text-center" }),
-          _vm._v(" "),
-          _c("p", { staticClass: "text-muted text-center" }, [
-            _vm._v("Software Engineer")
-          ]),
-          _vm._v(" "),
-          _c("ul", { staticClass: "list-group list-group-unbordered" }, [
-            _c("li", { staticClass: "list-group-item" }, [
-              _c("b", [_vm._v("Followers")]),
-              _vm._v(" "),
-              _c("a", { staticClass: "pull-right" }, [_vm._v("1,322")])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "list-group-item" }, [
-              _c("b", [_vm._v("Following")]),
-              _vm._v(" "),
-              _c("a", { staticClass: "pull-right" }, [_vm._v("543")])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "list-group-item" }, [
-              _c("b", [_vm._v("Friends")]),
-              _vm._v(" "),
-              _c("a", { staticClass: "pull-right" }, [_vm._v("13,287")])
-            ])
-          ]),
-          _vm._v(" "),
-          _c(
-            "a",
-            { staticClass: "btn btn-primary btn-block", attrs: { href: "#" } },
-            [_c("b", [_vm._v("Follow")])]
-          )
-        ])
+    return _c("ul", { staticClass: "list-group list-group-unbordered" }, [
+      _c("li", { staticClass: "list-group-item" }, [
+        _c("b", [_vm._v("Followers")]),
+        _vm._v(" "),
+        _c("a", { staticClass: "pull-right" }, [_vm._v("1,322")])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "box box-primary" }, [
-        _c("div", { staticClass: "box-header with-border" }, [
-          _c("h3", { staticClass: "box-title" }, [_vm._v("About Me")])
+      _c("li", { staticClass: "list-group-item" }, [
+        _c("b", [_vm._v("Following")]),
+        _vm._v(" "),
+        _c("a", { staticClass: "pull-right" }, [_vm._v("543")])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "list-group-item" }, [
+        _c("b", [_vm._v("Friends")]),
+        _vm._v(" "),
+        _c("a", { staticClass: "pull-right" }, [_vm._v("13,287")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      { staticClass: "btn btn-primary btn-block", attrs: { href: "#" } },
+      [_c("b", [_vm._v("Follow")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "box box-primary" }, [
+      _c("div", { staticClass: "box-header with-border" }, [
+        _c("h3", { staticClass: "box-title" }, [_vm._v("About Me")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "box-body" }, [
+        _c("strong", [
+          _c("i", { staticClass: "fa fa-book margin-r-5" }),
+          _vm._v(" Education")
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "box-body" }, [
-          _c("strong", [
-            _c("i", { staticClass: "fa fa-book margin-r-5" }),
-            _vm._v(" Education")
+        _c("p", { staticClass: "text-muted" }, [
+          _vm._v(
+            "\n\t                        B.S. in Computer Science from the University of Tennessee at Knoxville\n\t                    "
+          )
+        ]),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c("strong", [
+          _c("i", { staticClass: "fa fa-map-marker margin-r-5" }),
+          _vm._v(" Location")
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "text-muted" }, [_vm._v("Malibu, California")]),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c("strong", [
+          _c("i", { staticClass: "fa fa-pencil margin-r-5" }),
+          _vm._v(" Skills")
+        ]),
+        _vm._v(" "),
+        _c("p", [
+          _c("span", { staticClass: "label label-danger" }, [
+            _vm._v("UI Design")
           ]),
           _vm._v(" "),
-          _c("p", { staticClass: "text-muted" }, [
-            _vm._v(
-              "\n\t                        B.S. in Computer Science from the University of Tennessee at Knoxville\n\t                    "
-            )
+          _c("span", { staticClass: "label label-success" }, [
+            _vm._v("Coding")
           ]),
           _vm._v(" "),
-          _c("hr"),
-          _vm._v(" "),
-          _c("strong", [
-            _c("i", { staticClass: "fa fa-map-marker margin-r-5" }),
-            _vm._v(" Location")
+          _c("span", { staticClass: "label label-info" }, [
+            _vm._v("Javascript")
           ]),
           _vm._v(" "),
-          _c("p", { staticClass: "text-muted" }, [
-            _vm._v("Malibu, California")
-          ]),
+          _c("span", { staticClass: "label label-warning" }, [_vm._v("PHP")]),
           _vm._v(" "),
-          _c("hr"),
-          _vm._v(" "),
-          _c("strong", [
-            _c("i", { staticClass: "fa fa-pencil margin-r-5" }),
-            _vm._v(" Skills")
-          ]),
-          _vm._v(" "),
-          _c("p", [
-            _c("span", { staticClass: "label label-danger" }, [
-              _vm._v("UI Design")
-            ]),
-            _vm._v(" "),
-            _c("span", { staticClass: "label label-success" }, [
-              _vm._v("Coding")
-            ]),
-            _vm._v(" "),
-            _c("span", { staticClass: "label label-info" }, [
-              _vm._v("Javascript")
-            ]),
-            _vm._v(" "),
-            _c("span", { staticClass: "label label-warning" }, [_vm._v("PHP")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "label label-primary" }, [
-              _vm._v("Node.js")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("hr"),
-          _vm._v(" "),
-          _c("strong", [
-            _c("i", { staticClass: "fa fa-file-text-o margin-r-5" }),
-            _vm._v(" Notes")
-          ]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque."
-            )
+          _c("span", { staticClass: "label label-primary" }, [
+            _vm._v("Node.js")
           ])
+        ]),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c("strong", [
+          _c("i", { staticClass: "fa fa-file-text-o margin-r-5" }),
+          _vm._v(" Notes")
+        ]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque."
+          )
         ])
       ])
     ])
@@ -60158,705 +61003,11 @@ if (false) {
 }
 
 /***/ }),
-/* 57 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            logged_in_name: '',
-            logged_in_email: '',
-            logged_in_phone: '',
-            logged_in_address: '',
-            BASE_URL: ''
-        };
-    },
-    created: function created() {
-        this.logged_in_name = _name;
-        this.logged_in_email = _email;
-        this.logged_in_phone = _phone;
-        this.logged_in_address = _address;
-        this.BASE_URL = BASE_URL;
-    },
-
-    methods: {
-        logout: function logout() {
-            window.location.href = this.BASE_URL + 'admin/logout';
-        }
-    }
-});
-
-/***/ }),
 /* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(2)
 /* script */
 var __vue_script__ = null
 /* template */

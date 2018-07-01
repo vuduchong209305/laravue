@@ -7,7 +7,8 @@ export default [
 	{
 		path: '/admin/home',
 		component : home,
-		name : 'home'
+		name : 'home',
+		meta : {title : 'Home'}
 	},
 	{
 		path: '/admin/profile',

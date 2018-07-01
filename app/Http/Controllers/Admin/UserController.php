@@ -36,7 +36,7 @@ class UserController extends Controller
         return redirect()->route('login');
     }
 
-    public function upload(Request $request) {
+    public function updateAvatar(Request $request) {
 
     	$status = false;
 

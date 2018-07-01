@@ -20,12 +20,14 @@
 		            <!-- Profile Image -->
 		            <div class="box box-primary">
 		                <div class="box-body box-profile">
-		                    
-	                        <img class="profile-user-img img-responsive img-circle preview" src="public/admin/img/avatar.png" alt="User profile picture">
+
+	                        <img :src="!avatar ? '/public/admin/img/no-image.png' : avatar" title="Thay ảnh đại diện" class="profile-user-img img-responsive img-circle preview" data-toggle="tooltip" onclick="document.getElementById('fileInput').click()">
+
+	                        <input type="file" id="fileInput" class="hidden" ref="avatar" accept=".png, .jpg, .jpeg" v-on:change="onImageChange">
 
 		                    <h3 class="profile-username text-center"></h3>
 
-		                    <p class="text-muted text-center">Software Engineer</p>
+		                    <p class="text-muted text-center">{{ data_detail.name }}</p>
 
 		                    <ul class="list-group list-group-unbordered">
 		                        <li class="list-group-item">
@@ -367,7 +369,9 @@
 					email : '',
 					phone : '',
 					address : ''
-				}
+				},
+				avatar : '',
+				preview : ''
 			}
 		},
 		created() {
@@ -376,6 +380,7 @@
 			this.data_detail.email = _email
 			this.data_detail.phone = _phone
 			this.data_detail.address = _address
+			this.avatar = _avatar
 		},
 		methods: {
 			update() {
@@ -415,7 +420,40 @@
 						})
 					}
 				})
-			}
+			},
+			onImageChange(e) {
+                this.avatar = this.$refs.avatar.files[0]
+                let formData = new FormData()
+                formData.append('image', this.avatar)
+
+                axios.post(BASE_URL + 'admin/updateAvatar', formData,
+                	{
+						headers: {
+							'Content-Type': 'multipart/form-data'
+						}
+					}
+                ).then(res => {
+                	if(res.data == 'OK') {
+                		if(e.target.files && e.target.files[0]) {
+			                var reader = new FileReader()
+			                reader.onload = (e) => {
+			                    this.avatar = e.target.result
+			                }
+			                reader.readAsDataURL(e.target.files[0])
+			            }
+
+			            this.$notify({
+							group: 'foo',
+							title: 'Thông báo',
+							text: 'Cập nhật thành công !',
+							type: 'success',
+						})
+                	}
+		            
+                }).catch(error => {
+                	console.log(error)
+                })
+            }
 		}
 	}
 </script>

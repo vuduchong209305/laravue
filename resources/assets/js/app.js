@@ -22,12 +22,12 @@ Vue.use(VeeValidate)
 
 const router = new VueRouter({
 	routes : Routes,
-	mode: 'history'
+	mode: 'history',
 })
 
 router.beforeEach((to, from, next) => {
-  document.title = to.meta.title
-  next()
+	document.title = to.meta.title
+	next()
 })
 
 router.beforeResolve((to, from, next) => {
