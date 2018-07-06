@@ -30,9 +30,9 @@
                                                         <img src="public/admin/img/avatar.png" class="img-circle" alt="User Image">
                                                     </div>
                                                     <h4>
-                        Support Team
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                      </h4>
+                                                        Support Team
+                                                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                                                    </h4>
                                                     <p>Why not buy a new awesome theme?</p>
                                                 </a>
                                             </li>
@@ -43,9 +43,9 @@
                                                         <img src="public/admin/img/avatar.png" class="img-circle" alt="User Image">
                                                     </div>
                                                     <h4>
-                        AdminLTE Design Team
-                        <small><i class="fa fa-clock-o"></i> 2 hours</small>
-                      </h4>
+                                                        AdminLTE Design Team
+                                                        <small><i class="fa fa-clock-o"></i> 2 hours</small>
+                                                    </h4>
                                                     <p>Why not buy a new awesome theme?</p>
                                                 </a>
                                             </li>
@@ -55,9 +55,9 @@
                                                         <img src="public/admin/img/user4-128x128.jpg" class="img-circle" alt="User Image">
                                                     </div>
                                                     <h4>
-                        Developers
-                        <small><i class="fa fa-clock-o"></i> Today</small>
-                      </h4>
+                                                        Developers
+                                                        <small><i class="fa fa-clock-o"></i> Today</small>
+                                                    </h4>
                                                     <p>Why not buy a new awesome theme?</p>
                                                 </a>
                                             </li>
@@ -67,9 +67,9 @@
                                                         <img src="public/admin/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                                                     </div>
                                                     <h4>
-                        Sales Department
-                        <small><i class="fa fa-clock-o"></i> Yesterday</small>
-                      </h4>
+                                                        Sales Department
+                                                        <small><i class="fa fa-clock-o"></i> Yesterday</small>
+                                                    </h4>
                                                     <p>Why not buy a new awesome theme?</p>
                                                 </a>
                                             </li>
@@ -79,9 +79,9 @@
                                                         <img src="public/admin/img/user4-128x128.jpg" class="img-circle" alt="User Image">
                                                     </div>
                                                     <h4>
-                        Reviewers
-                        <small><i class="fa fa-clock-o"></i> 2 days</small>
-                      </h4>
+                                                        Reviewers
+                                                        <small><i class="fa fa-clock-o"></i> 2 days</small>
+                                                    </h4>
                                                     <p>Why not buy a new awesome theme?</p>
                                                 </a>
                                             </li>
@@ -146,9 +146,9 @@
                                                 <!-- Task item -->
                                                 <a href="#">
                                                     <h3>
-                        Design some buttons
-                        <small class="pull-right">20%</small>
-                      </h3>
+                                                        Design some buttons
+                                                        <small class="pull-right">20%</small>
+                                                    </h3>
                                                     <div class="progress xs">
                                                         <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
                                                             <span class="sr-only">20% Complete</span>
@@ -161,9 +161,9 @@
                                                 <!-- Task item -->
                                                 <a href="#">
                                                     <h3>
-                        Create a nice theme
-                        <small class="pull-right">40%</small>
-                      </h3>
+                                                        Create a nice theme
+                                                        <small class="pull-right">40%</small>
+                                                    </h3>
                                                     <div class="progress xs">
                                                         <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
                                                             <span class="sr-only">40% Complete</span>
@@ -176,9 +176,9 @@
                                                 <!-- Task item -->
                                                 <a href="#">
                                                     <h3>
-                        Some task I need to do
-                        <small class="pull-right">60%</small>
-                      </h3>
+                                                        Some task I need to do
+                                                        <small class="pull-right">60%</small>
+                                                    </h3>
                                                     <div class="progress xs">
                                                         <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
                                                             <span class="sr-only">60% Complete</span>
@@ -191,9 +191,9 @@
                                                 <!-- Task item -->
                                                 <a href="#">
                                                     <h3>
-                        Make beautiful transitions
-                        <small class="pull-right">80%</small>
-                      </h3>
+                                                        Make beautiful transitions
+                                                        <small class="pull-right">80%</small>
+                                                    </h3>
                                                     <div class="progress xs">
                                                         <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
                                                             <span class="sr-only">80% Complete</span>
@@ -303,8 +303,12 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> Ban Quản Trị</a></li>
-                                <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Người dùng</a></li>
+                                <li>
+                                    <router-link :to="{name : 'listRegent'}">
+                                        <i class="fa fa-circle-o"></i> Ban Quản Trị
+                                    </router-link>
+                                </li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Người dùng</a></li>
                             </ul>
                         </li>
                         <li class="treeview">
@@ -316,11 +320,11 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> Danh sách</a></li>
-                                <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Nhập kho</a></li>
-                                <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Xuất kho</a></li>
-                                <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Báo cáo tài chính</a></li>
-                                <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Biểu đồ tăng trưởng</a></li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Danh sách</a></li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Nhập kho</a></li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Xuất kho</a></li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Báo cáo tài chính</a></li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Biểu đồ tăng trưởng</a></li>
                             </ul>
                         </li>
                         <li class="treeview">
@@ -331,8 +335,8 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> Chuyên mục</a></li>
-                                <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Tin tức</a></li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Chuyên mục</a></li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Tin tức</a></li>
                             </ul>
                         </li>
                         <li class="treeview">
@@ -343,8 +347,8 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> Danh sách</a></li>
-                                <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Nhân viên</a></li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Danh sách</a></li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Nhân viên</a></li>
                             </ul>
                         </li>
                         
@@ -356,9 +360,9 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="pages/examples/invoice.html"><i class="fa fa-circle-o"></i> Đối tác cung cấp</a></li>
-                                <li><a href="pages/examples/profile.html"><i class="fa fa-circle-o"></i> Đối tác tiêu thụ</a></li>
-                                <li><a href="pages/examples/login.html"><i class="fa fa-circle-o"></i> Đối tác liên kết</a></li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Đối tác cung cấp</a></li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Đối tác tiêu thụ</a></li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Đối tác liên kết</a></li>
                             </ul>
                         </li>
                         <li class="treeview">
@@ -395,7 +399,7 @@
                 <div class="pull-right hidden-xs">
                     <b>Version</b> 2.4.0
                 </div>
-                <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights reserved.
+                <strong>Copyright &copy; 2014-2016 <a href="#">Almsaeed Studio</a>.</strong> All rights reserved.
             </footer>
 
             <!-- Control Sidebar -->
@@ -463,10 +467,9 @@
                             <li>
                                 <a href="javascript:void(0)">
                                     <h4 class="control-sidebar-subheading">
-                Custom Template Design
-                <span class="label label-danger pull-right">70%</span>
-              </h4>
-
+                                        Custom Template Design
+                                        <span class="label label-danger pull-right">70%</span>
+                                    </h4>
                                     <div class="progress progress-xxs">
                                         <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
                                     </div>
@@ -475,10 +478,9 @@
                             <li>
                                 <a href="javascript:void(0)">
                                     <h4 class="control-sidebar-subheading">
-                Update Resume
-                <span class="label label-success pull-right">95%</span>
-              </h4>
-
+                                        Update Resume
+                                        <span class="label label-success pull-right">95%</span>
+                                    </h4>
                                     <div class="progress progress-xxs">
                                         <div class="progress-bar progress-bar-success" style="width: 95%"></div>
                                     </div>
@@ -487,10 +489,9 @@
                             <li>
                                 <a href="javascript:void(0)">
                                     <h4 class="control-sidebar-subheading">
-                Laravel Integration
-                <span class="label label-warning pull-right">50%</span>
-              </h4>
-
+                                        Laravel Integration
+                                        <span class="label label-warning pull-right">50%</span>
+                                    </h4>
                                     <div class="progress progress-xxs">
                                         <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
                                     </div>
@@ -499,17 +500,15 @@
                             <li>
                                 <a href="javascript:void(0)">
                                     <h4 class="control-sidebar-subheading">
-                Back End Framework
-                <span class="label label-primary pull-right">68%</span>
-              </h4>
-
+                                        Back End Framework
+                                        <span class="label label-primary pull-right">68%</span>
+                                    </h4>
                                     <div class="progress progress-xxs">
                                         <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
                                     </div>
                                 </a>
                             </li>
                         </ul>
-                        <!-- /.control-sidebar-menu -->
 
                     </div>
                     <!-- /.tab-pane -->
@@ -599,6 +598,7 @@
                 logged_in_phone : '',
                 logged_in_address : '',
                 logged_in_avatar : '',
+                logged_in_role : '',
                 BASE_URL : ''
             }
         },
@@ -608,6 +608,7 @@
             this.logged_in_phone = _phone
             this.logged_in_address = _address
             this.logged_in_avatar = _avatar
+            this.logged_in_role = _role
             this.BASE_URL = BASE_URL
         },
         methods: {

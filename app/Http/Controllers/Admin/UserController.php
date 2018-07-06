@@ -106,4 +106,22 @@ class UserController extends Controller
     public function index() {
         return view('admin.home');
     }
+
+    public function getAllRegent() {
+        $admin = User::all();
+        return response()->json($admin);
+    }
+
+    public function store(Request $request) {
+
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->role = $request->role;
+
+        $user->save();
+    }
 }

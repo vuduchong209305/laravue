@@ -11,14 +11,16 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
 	Route::group(['middleware' => 'login'], function() {
 
 		Route::get('home', ['as' => 'home', 'uses' => 'UserController@index']);
-
 		Route::post('updateProfile', 'UserController@updateProfile');
 		Route::post('updateAvatar', 'UserController@updateAvatar');
+
+		Route::get('getAllRegent', ['as' => 'getAllRegent', 'uses' => 'UserController@getAllRegent']);
+		Route::post('addRegent', ['as' => 'addRegent', 'uses' => 'UserController@store']);
 	});
 
 });
 
-// Route::any('{all}', 'UserController@getLogin')->where(['all' => '.*']);
+/*Route::any('{all}', 'Admin\UserController@getLogin')->where(['all' => '.*']);*/
 
 Route::any('{all}', function () {
     return view('admin.home');

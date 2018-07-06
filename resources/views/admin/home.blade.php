@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ Auth::user()->avatar }}">
     <base href="{{ asset('') }}">
     <meta id="csrf-token" name="csrf-token" value="{{ csrf_token() }}">
 
@@ -20,13 +21,14 @@
     <link rel="stylesheet" href="public/admin/css/custom.css">
 
     <script>
-        var BASE_URL = '<?php echo url('/') . '/' ?>'
-        var _id = '<?php echo Auth::user()->id ? Auth::user()->id : '' ?>'
-        var _name = '<?php echo Auth::user()->name ? Auth::user()->name : '' ?>'
-        var _email = '<?php echo Auth::user()->email ? Auth::user()->email : '' ?>'
-        var _phone = '<?php echo Auth::user()->phone ? Auth::user()->phone : '' ?>'
-        var _address = '<?php echo Auth::user()->address ? Auth::user()->address : '' ?>'
-        var _avatar = '<?php echo Auth::user()->avatar ? Auth::user()->avatar : '' ?>'
+        const BASE_URL = '<?php echo url('/') . '/' ?>'
+        const _id = '<?php echo Auth::user()->id ? Auth::user()->id : '' ?>'
+        const _name = '<?php echo Auth::user()->name ? Auth::user()->name : '' ?>'
+        const _email = '<?php echo Auth::user()->email ? Auth::user()->email : '' ?>'
+        const _phone = '<?php echo Auth::user()->phone ? Auth::user()->phone : '' ?>'
+        const _address = '<?php echo Auth::user()->address ? Auth::user()->address : '' ?>'
+        const _avatar = '<?php echo Auth::user()->avatar ? Auth::user()->avatar : '' ?>'
+        const _role = '<?php echo Auth::user()->role ? Auth::user()->role : '' ?>'
     </script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -39,6 +41,7 @@
         $.widget.bridge('uibutton', $.ui.button);
     </script>
     <script src="public/admin/js/bootstrap.min.js"></script>
+
     <script src="public/admin/js/raphael.min.js"></script>
     <script src="public/admin/js/jquery.sparkline.min.js"></script>
     <script src="public/admin/js/jquery.knob.min.js"></script>
@@ -47,6 +50,8 @@
     <script src="public/admin/js/bootstrap-datepicker.min.js"></script>
     <script src="public/admin/js/bootstrap3-wysihtml5.all.min.js"></script>
     <script src="public/admin/js/jquery.slimscroll.min.js"></script>
+
+
     <script src="public/admin/js/fastclick.js"></script>
     <script src="public/admin/js/adminlte.min.js"></script>
     <script src="public/admin/js/dashboard.js"></script>

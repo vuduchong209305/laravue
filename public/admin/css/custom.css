@@ -25,6 +25,17 @@ body {
     cursor: pointer;
 }
 
-img {
+img, input[type="checkbox"] {
     cursor: pointer;
+}
+
+table tr td span.block-button { display:none;}
+table tr:hover td span.block-button { display:block;}
+
+.w100 {
+    max-width: 100px;
+}
+
+td > * {
+    vertical-align : middle;
 }
