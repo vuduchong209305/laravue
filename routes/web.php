@@ -16,6 +16,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
 
 		Route::get('getAllRegent', ['as' => 'getAllRegent', 'uses' => 'UserController@getAllRegent']);
 		Route::post('addRegent', ['as' => 'addRegent', 'uses' => 'UserController@store']);
+		Route::delete('deleteRegent', ['as' => 'deleteRegent', 'uses' => 'UserController@deleteRegent']);
 	});
 
 });

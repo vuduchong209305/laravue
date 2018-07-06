@@ -13,6 +13,8 @@ use Validator;
 
 class UserController extends Controller
 {
+    private $per_page = 10;
+
     public function getLogin() {
         if(Auth::check()) {
             return redirect()->route('home');
@@ -22,12 +24,12 @@ class UserController extends Controller
     }
 
     public function postLogin(LoginRequest $request) {
-        
+
     	$login = $request->only('email', 'password');
 
         if (!Auth::attempt($login))
             return back()->with('msg', 'Đăng nhập thất bại');
-		else
+        else
             return redirect()->route('home');
     }
 
@@ -77,16 +79,16 @@ class UserController extends Controller
     public function updateProfile(Request $request) {
 
         $validator = Validator::make($request->data, [
-            'name' => 'required',
-            'phone' => 'required',
+            'name'    => 'required',
+            'phone'   => 'required',
             'address' => 'required'
         ]);
 
         if ($validator->passes()) {
 
-            $user = User::find($request->data['id']);
-            $user->name = $request->data['name'];
-            $user->phone = $request->data['phone'];
+            $user          = User::find($request->data['id']);
+            $user->name    = $request->data['name'];
+            $user->phone   = $request->data['phone'];
             $user->address = $request->data['address'];
 
             if($request->data['password'] != '') {
@@ -108,20 +110,72 @@ class UserController extends Controller
     }
 
     public function getAllRegent() {
-        $admin = User::all();
+        $admin = User::paginate($this->per_page);
         return response()->json($admin);
     }
 
     public function store(Request $request) {
 
-        $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->phone = $request->phone;
-        $user->address = $request->address;
-        $user->role = $request->role;
+        $validator = Validator::make($request->all(), [
+            'name'     => 'required',
+            'phone'    => 'required',
+            'address'  => 'required',
+            'email'    => 'required',
+            'role'     => 'required',
+            'password' => 'required'
+        ]);
 
-        $user->save();
+        if($request->hasFile('image') && $request->file('image')->isValid()) {
+
+            $image = $request->file('image');
+
+            $fileName = $image->getClientOriginalName();
+
+            $image->move(public_path('admin/avatar'), $fileName);
+
+            $location = '/public/admin/avatar/' . $fileName;
+
+        }
+
+        if ($validator->passes()) {
+            $user           = new User;
+            $user->name     = $request->name;
+            $user->email    = $request->email;
+            $user->password = Hash::make($request->password);
+            $user->phone    = $request->phone;
+            $user->address  = $request->address;
+            $user->role     = $request->role;
+            $user->avatar   = $location;
+
+            $user->save();
+            $status = 'OK';
+
+        } else {
+
+            $status = $validator->errors();
+
+        }
+
+        return response()->json($status);
+    }
+
+    public function deleteRegent(Request $request) {
+        if($request->id == Auth::user()->id) {
+            $status = 'is_me';
+            return response()->json($status);
+        }
+
+        if($request->isMethod('delete')) {
+            $user = new User;
+            $user = User::find($request->id);
+            $user->delete();
+
+            if(File::exists($user->avatar)) {
+                File::delete($user->avatar);
+            }
+
+            $status = 'OK';
+        }
+        return response()->json($status);
     }
 }

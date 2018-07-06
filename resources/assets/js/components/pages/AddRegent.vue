@@ -56,7 +56,7 @@
 										</div>
 										<div class="form-group">
 											<label>Role <font color="red">*</font></label>
-											<select class="form-control" name="role" v-validate="'required'">
+											<select v-model="data_detail.role" class="form-control" name="role" v-validate="'required'">
 												<option value="" selected disabled>chọn</option>
 												<option value="admin">admin</option>
 												<option value="mod">mod</option>
@@ -85,7 +85,10 @@
 								</div>
 							</div>
 							<div class="box-footer">
-								<button type="button" class="btn btn-primary" v-on:click="submit">Submit</button>
+								<center>
+									<a class="btn btn-success" v-on:click="submit"><i class="fa fa-plus"></i> Thêm mới</a>
+									<router-link :to="{name : 'listRegent'}" class="btn btn-primary"><i class="fa fa-list"></i> Danh sách</router-link>
+								</center>
 							</div>
 						</form>
 					</div>
@@ -108,7 +111,8 @@
 					email : '',
 					password : '',
 					phone : '',
-					address : ''
+					address : '',
+					role : ''
 				}
 			}
 		},
@@ -132,6 +136,7 @@
 						formData.append('password', this.data_detail.password)
 						formData.append('phone', this.data_detail.phone)
 						formData.append('address', this.data_detail.address)
+						formData.append('role', this.data_detail.role)
 
 						axios.post(BASE_URL + 'admin/addRegent', formData,
 							{
@@ -140,7 +145,6 @@
 								}
 							}
 						).then(res => {
-							console.log(res)
 							if(res.data == 'OK') {
 								
 								this.$notify({
@@ -148,6 +152,14 @@
 									title: 'Thông báo',
 									text: 'Thêm mới thành công !',
 									type: 'success',
+								})
+								window.location.href = BASE_URL + 'admin/regent'
+							} else {
+								this.$notify({
+									group: 'foo',
+									title: 'Thông báo',
+									text: 'Thất bại ! Đã có lỗi xảy ra !',
+									type: 'warn',
 								})
 							}
 

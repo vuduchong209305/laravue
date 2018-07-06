@@ -15,7 +15,9 @@ import NProgress from 'nprogress'
 import '../../../node_modules/nprogress/nprogress.css'
 import VeeValidate from 'vee-validate'
 import Routes from './routes'
+import VueSweetalert2 from 'vue-sweetalert2'
 
+Vue.use(VueSweetalert2)
 Vue.use(VueRouter)
 Vue.use(Notifications)
 Vue.use(VeeValidate)

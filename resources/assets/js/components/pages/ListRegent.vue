@@ -37,27 +37,35 @@
 										<th width="5%"><input type="checkbox" class="checkall" /></th>
 										<th width="15%">Avatar</th>
 										<th width="25%">Name</th>
-										<th width="25%">Email</th>
-										<th width="20%">Role</th>
+										<th width="20%">Email</th>
+										<th width="10%">Phone</th>
+										<th width="15%">Role</th>
 										<th width="10%">Action</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr v-for="item in listRecord" v-if="listRecord.length > 0">
+									<tr v-for="item, index in listRecord" v-if="listRecord.length > 0">
 										<td><input type="checkbox" /></td>
 										<td><img :src="item.avatar" alt="" class="w100"></td>
 										<td>{{ item.name }}</td>
 										<td>{{ item.email }}</td>
+										<td>{{ item.phone }}</td>
 										<td><span :class="['label', item.role == 'admin' ? 'label-danger' : 'label-success']">{{ item.role }}</span></td>
 										<td>
 											<span class="block-button">
 												<a class="btn btn-xs btn-info"><i class="fa fa-edit"></i></a>
-												<a class="btn btn-xs btn-danger"><i class="fa fa-close"></i></a>
+												<a class="btn btn-xs btn-danger" v-on:click="deleteItem(index,item.id)"><i class="fa fa-close"></i></a>
 											</span>
 										</td>
 									</tr>
 								</tbody>
 							</table>
+						</div>
+						<div class="box-footer clearfix">
+							<div class="pull-right">
+								<div>Hiển thị {{pagination.from}} đến {{pagination.to}} của {{pagination.total}} dữ liệu</div>
+								<pagination v-bind:pagination="pagination" v-on:click.native="getListData(pagination.current_page)" :offset="4"></pagination>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -67,20 +75,78 @@
 </template>
 
 <script>
+	import pagination from '../include/Pagination'
 	export default {
+		components : { pagination },
 		data() {
 			return {
-				listRecord : {}
+				listRecord : {},
+				pagination: {
+					total: 0,
+					per_page: 2,
+					from: 1,
+					to: 0,
+					current_page: 1
+				},
+				offset: 4
 			}
 		},
 		created() {
-			axios.get(BASE_URL + 'admin/getAllRegent', {
-				
-			}).then(res => {
-				this.listRecord = res.data
-			}).catch(e => {
-				console.log(e)
-			})
+			this.getListData(this.pagination.current_page);
+		},
+		methods: {
+			getListData(page) {
+				axios.get(BASE_URL + 'admin/getAllRegent', {
+					params : {page : page}
+				}).then(res => {
+					this.listRecord = res.data.data
+					this.pagination = res.data
+				}).catch(e => {
+					console.log(e)
+				})
+			},
+			deleteItem(index, id) {
+				Vue.swal({
+					title: 'Bạn chắc chắn muốn xóa?',
+					text: "Dữ liệu sẽ không thể khôi phục lại được!",
+					type: 'warning',
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					cancelButtonColor: '#d33',
+					confirmButtonText: 'Đồng ý!',
+					cancelButtonText: 'Hủy!'
+				}).then((result) => {
+					if (result.value) {
+						axios.delete(BASE_URL + 'admin/deleteRegent', {
+							params: { id: id }
+						}).then(res => {
+							console.log(res)
+							if(res.data == 'OK') {
+								this.listRecord.splice(index, 1);
+								Vue.swal(
+									'Đã xóa !',
+									'Dữ liệu của bạn đã được xóa !',
+									'success'
+									)
+							} else if(res.data == 'is_me') {
+								Vue.swal(
+									'Xóa thất bại', 
+									'Bạn không được xóa chính mình', 
+									'info'
+									)
+							} else {
+								Vue.swal(
+									'Xóa thất bại', 
+									'Đã xảy ra lỗi', 
+									'info'
+									)
+							}
+						}).catch(e => {
+							console.log(e)
+						});
+					}
+				})
+			}
 		}
 	}
 
