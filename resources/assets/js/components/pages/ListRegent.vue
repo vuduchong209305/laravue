@@ -6,8 +6,8 @@
 				<small>Ban quản trị</small>
 			</h1>
 			<ol class="breadcrumb">
-				<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-				<li><a href="#">Ban quản trị</a></li>
+				<li><router-link :to="{name : 'home'}"><i class="fa fa-dashboard"></i> Home</router-link></li>
+				<li><router-link :to="{name : 'listRegent'}">Ban quản trị</router-link></li>
 				<li class="active">Danh sách</li>
 			</ol>
 		</section>
@@ -21,10 +21,9 @@
 							<router-link :to="{name : 'addRegent'}" class="btn btn-sm btn-danger"><i class="fa fa-close"></i> Xóa</router-link>
 							<div class="box-tools">
 								<div class="input-group input-group-sm" style="width: 200px;">
-									<input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-
+									<input v-on:keypress.enter.prevent="searchKeyword" v-model="keyword" type="text" name="table_search" class="form-control pull-right" placeholder="Search" >
 									<div class="input-group-btn">
-										<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+										<button v-on:click="searchKeyword" type="button" class="btn btn-default"><i class="fa fa-search"></i></button>
 									</div>
 								</div>
 							</div>
@@ -88,7 +87,8 @@
 					to: 0,
 					current_page: 1
 				},
-				offset: 4
+				offset: 4,
+				keyword : ''
 			}
 		},
 		created() {
@@ -96,14 +96,20 @@
 		},
 		methods: {
 			getListData(page) {
-				axios.get(BASE_URL + 'admin/getAllRegent', {
-					params : {page : page}
+				axios.get(BASE_URL + 'admin/regent/index', {
+					params : {
+						page : page,
+						keyword : this.keyword
+					}
 				}).then(res => {
 					this.listRecord = res.data.data
 					this.pagination = res.data
 				}).catch(e => {
 					console.log(e)
 				})
+			},
+			searchKeyword(e) {
+				this.getListData(1)
 			},
 			deleteItem(index, id) {
 				Vue.swal({
@@ -117,7 +123,7 @@
 					cancelButtonText: 'Hủy!'
 				}).then((result) => {
 					if (result.value) {
-						axios.delete(BASE_URL + 'admin/deleteRegent', {
+						axios.delete(BASE_URL + 'admin/regent/delete', {
 							params: { id: id }
 						}).then(res => {
 							console.log(res)

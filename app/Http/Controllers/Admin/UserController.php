@@ -105,12 +105,21 @@ class UserController extends Controller
         return response()->json($status);
     }
 
-    public function index() {
+    public function dashboard() {
         return view('admin.home');
     }
 
-    public function getAllRegent() {
-        $admin = User::paginate($this->per_page);
+    public function index(Request $request) {
+        if(!$request->keyword) {
+            $admin = User::paginate($this->per_page);
+        } else {
+            $admin = User::where('email', 'like', '%' . $request->keyword . '%')
+            ->orWhere('role', 'like', '%' . $request->keyword . '%')
+            ->orWhere('name', 'like', '%' . $request->keyword . '%')
+            ->orWhere('phone', 'like', '%' . $request->keyword . '%')
+            ->paginate($this->per_page);
+        }
+        
         return response()->json($admin);
     }
 
@@ -120,7 +129,7 @@ class UserController extends Controller
             'name'     => 'required',
             'phone'    => 'required',
             'address'  => 'required',
-            'email'    => 'required',
+            'email'    => 'required|unique:users',
             'role'     => 'required',
             'password' => 'required'
         ]);

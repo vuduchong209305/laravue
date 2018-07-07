@@ -6,8 +6,8 @@
 				<small>Ban quản trị</small>
 			</h1>
 			<ol class="breadcrumb">
-				<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-				<li><a href="#">Ban quản trị</a></li>
+				<li><router-link :to="{name : 'home'}"><i class="fa fa-dashboard"></i> Home</router-link></li>
+				<li><router-link :to="{name : 'listRegent'}">Ban quản trị</router-link></li>
 				<li class="active">Thêm mới</li>
 			</ol>
 		</section>
@@ -26,7 +26,7 @@
 												<label>Avatar</label><br>
 
 												<span v-if="!avatar">
-													<input type="file" class="form-control hidden" id="fileInput" v-on:change="onImageChange" ref="avatar" accept=".png, .jpg, .jpeg">
+													<input type="file" class="form-control hidden" id="fileInput" v-on:change="onImageChange" ref="avatar" accept="image/*">
 													<img src="public/admin/img/no-image.png" class="w100"><br><br>
 													<a class="btn btn-sm btn-info" onclick="document.getElementById('fileInput').click()">
 														<i class="fa fa-upload"> Chọn ảnh</i>
@@ -138,7 +138,7 @@
 						formData.append('address', this.data_detail.address)
 						formData.append('role', this.data_detail.role)
 
-						axios.post(BASE_URL + 'admin/addRegent', formData,
+						axios.post(BASE_URL + 'admin/regent/add', formData,
 							{
 								headers: {
 									'Content-Type': 'multipart/form-data'
@@ -146,14 +146,13 @@
 							}
 						).then(res => {
 							if(res.data == 'OK') {
-								
 								this.$notify({
 									group: 'foo',
 									title: 'Thông báo',
 									text: 'Thêm mới thành công !',
 									type: 'success',
 								})
-								window.location.href = BASE_URL + 'admin/regent'
+								this.$router.push({name: 'listRegent'}) 
 							} else {
 								this.$notify({
 									group: 'foo',
@@ -182,6 +181,7 @@
 			},
 			remove() {
 				this.avatar = ''
+				this.preview = ''
 			}
 		}
 	}

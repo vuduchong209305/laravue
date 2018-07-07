@@ -10,13 +10,15 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
 
 	Route::group(['middleware' => 'login'], function() {
 
-		Route::get('home', ['as' => 'home', 'uses' => 'UserController@index']);
+		Route::get('home', ['as' => 'home', 'uses' => 'UserController@dashboard']);
 		Route::post('updateProfile', 'UserController@updateProfile');
 		Route::post('updateAvatar', 'UserController@updateAvatar');
 
-		Route::get('getAllRegent', ['as' => 'getAllRegent', 'uses' => 'UserController@getAllRegent']);
-		Route::post('addRegent', ['as' => 'addRegent', 'uses' => 'UserController@store']);
-		Route::delete('deleteRegent', ['as' => 'deleteRegent', 'uses' => 'UserController@deleteRegent']);
+		Route::group(['prefix' => 'regent'], function() {
+			Route::get('index', ['uses' => 'UserController@index']);
+			Route::post('add', ['uses' => 'UserController@store']);
+			Route::delete('delete', ['uses' => 'UserController@deleteRegent']);
+		});
 	});
 
 });
