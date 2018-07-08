@@ -17,7 +17,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
 		Route::group(['prefix' => 'regent'], function() {
 			Route::get('index', ['uses' => 'UserController@index']);
 			Route::post('add', ['uses' => 'UserController@store']);
-			Route::delete('delete', ['uses' => 'UserController@deleteRegent']);
+			Route::get('getDetail', ['uses' => 'UserController@getDetail']);
+			Route::post('update', ['uses' => 'UserController@update']);
+			Route::delete('delete', ['uses' => 'UserController@deleteItem']);
+			Route::delete('deleteMulti', ['uses' => 'UserController@deleteMulti']);
 		});
 	});
 

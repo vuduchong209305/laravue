@@ -124,7 +124,6 @@ class UserController extends Controller
     }
 
     public function store(Request $request) {
-
         $validator = Validator::make($request->all(), [
             'name'     => 'required',
             'phone'    => 'required',
@@ -168,23 +167,84 @@ class UserController extends Controller
         return response()->json($status);
     }
 
-    public function deleteRegent(Request $request) {
-        if($request->id == Auth::user()->id) {
-            $status = 'is_me';
-            return response()->json($status);
-        }
-
+    public function deleteItem(Request $request) {
         if($request->isMethod('delete')) {
-            $user = new User;
-            $user = User::find($request->id);
-            $user->delete();
-
-            if(File::exists($user->avatar)) {
-                File::delete($user->avatar);
+            if($request->id == Auth::user()->id) {
+                return response()->json(['status'=>"IS_ME"]);
             }
 
-            $status = 'OK';
+            User::destroy($request->id);
+            $user = User::paginate($this->per_page);
+            return response()->json([
+                'status'=>"OK",
+                'user' => $user
+            ]);
         }
+    }
+
+    public function deleteMulti(Request $request) {
+        if($request->isMethod('delete')) {
+            if(in_array(Auth::user()->id, $request->id)) {
+                return response()->json(['status'=>"IS_ME"]);
+            }
+            
+            User::destroy($request->id);
+            $user = User::paginate($this->per_page);
+            return response()->json([
+                'status'=>"OK",
+                'user' => $user
+            ]);
+        }
+    }
+
+    public function getDetail(Request $request) {
+        $user = User::findOrFail($request->id);
+        return response()->json($user);
+    }
+
+    public function update(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'name'     => 'required',
+            'phone'    => 'required',
+            'address'  => 'required',
+            'email'    => 'unique:users',
+            'role'     => 'required',
+        ]);
+
+        if($request->hasFile('image') && $request->file('image')->isValid()) {
+
+            $image = $request->file('image');
+            $fileName = $image->getClientOriginalName();
+            $image->move(public_path('admin/avatar'), $fileName);
+            $location = '/public/admin/avatar/' . $fileName;
+
+        } else {
+            $location = $request->image;
+        }
+
+        if ($validator->passes()) {
+
+            $user           = User::find($request->id);
+            $user->name     = $request->name;
+            $user->phone    = $request->phone;
+            $user->address  = $request->address;
+            $user->role     = $request->role;
+
+            if($request->password != '') {
+                $user->password = Hash::make($request->password);
+            }
+
+            $user->avatar = $request->image == null ? '' : $location;
+
+            $user->save();
+            $status = 'OK';
+
+        } else {
+
+            $status = $validator->errors();
+
+        }
+
         return response()->json($status);
     }
 }

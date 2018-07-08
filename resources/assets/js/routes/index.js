@@ -1,8 +1,9 @@
 import home from '../components/layouts/Home'
 import profile from '../components/layouts/Profile'
 import page404 from '../components/layouts/Page404'
-import addRegent from '../components/pages/AddRegent'
-import listRegent from '../components/pages/ListRegent'
+import addRegent from '../components/pages/regent/AddRegent'
+import listRegent from '../components/pages/regent/ListRegent'
+import editRegent from '../components/pages/regent/EditRegent'
 
 export default [
 
@@ -34,5 +35,11 @@ export default [
 		component: listRegent,
 		name : 'listRegent',
 		meta : {title : 'Danh sách ban quản trị'}
+	},
+	{	
+		path: '/admin/regent/:id',
+		component: editRegent,
+		name : 'editRegent',
+		meta : {title : 'Cập nhật ban quản trị'}
 	},
 ]

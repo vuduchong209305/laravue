@@ -25,7 +25,7 @@
 											<center>
 												<label>Avatar</label><br>
 
-												<span v-if="!avatar">
+												<span v-if="!data_detail.avatar">
 													<input type="file" class="form-control hidden" id="fileInput" v-on:change="onImageChange" ref="avatar" accept="image/*">
 													<img src="public/admin/img/no-image.png" class="w100"><br><br>
 													<a class="btn btn-sm btn-info" onclick="document.getElementById('fileInput').click()">
@@ -104,16 +104,16 @@
 	export default {
 		data() {
 			return {
-				preview : '',
-				avatar : '',
 				data_detail : {
 					name : '',
 					email : '',
 					password : '',
 					phone : '',
 					address : '',
-					role : ''
-				}
+					role : '',
+					avatar : ''
+				},
+				preview : '',
 			}
 		},
 		methods: {
@@ -130,7 +130,7 @@
 					} else {
 
 						let formData = new FormData()
-						formData.append('image', this.avatar)
+						formData.append('image', this.data_detail.avatar)
 						formData.append('name', this.data_detail.name)
 						formData.append('email', this.data_detail.email)
 						formData.append('password', this.data_detail.password)
@@ -176,11 +176,11 @@
 					}
 					reader.readAsDataURL(e.target.files[0])
 
-					this.avatar = this.$refs.avatar.files[0]
+					this.data_detail.avatar = this.$refs.avatar.files[0]
 				}
 			},
 			remove() {
-				this.avatar = ''
+				this.data_detail.avatar = ''
 				this.preview = ''
 			}
 		}
