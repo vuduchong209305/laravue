@@ -39,6 +39,11 @@
 														<i class="fa fa-close"> Xóa</i>
 													</a>
 												</span>
+												<div class="checkbox">
+													<label>
+														<input type="checkbox" v-model="data_detail.status"> Kích hoạt
+													</label>
+												</div>
 											</center>
 										</div>
 									</div>
@@ -50,7 +55,7 @@
 										</div>
 										<div class="form-group">
 											<label>Password <font color="red">*</font></label>
-											<input type="password" class="form-control" placeholder="password" v-model="data_detail.password">
+											<input type="password" class="form-control" placeholder="password" v-model="password">
 										</div>
 										<div class="form-group">
 											<label>Role <font color="red">*</font></label>
@@ -103,6 +108,7 @@
 		data() {
 			return {
 				data_detail : {},
+				password : '',
 				preview : '',
 			}
 		},
@@ -128,15 +134,15 @@
 						})
 
 					} else {
-
 						let formData = new FormData()
 						formData.append('id', this.data_detail.id)
 						formData.append('image', this.data_detail.avatar)
 						formData.append('name', this.data_detail.name)
-						formData.append('password', this.data_detail.password)
+						formData.append('password', this.password)
 						formData.append('phone', this.data_detail.phone)
 						formData.append('address', this.data_detail.address)
 						formData.append('role', this.data_detail.role)
+						formData.append('status', this.data_detail.status ? 1 : 0)
 
 						axios.post(BASE_URL + 'admin/regent/update', formData,
 							{

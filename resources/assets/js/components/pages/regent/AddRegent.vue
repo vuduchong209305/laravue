@@ -39,6 +39,12 @@
 														<i class="fa fa-close"> Xóa</i>
 													</a>
 												</span>
+
+												<div class="checkbox">
+													<label>
+														<input type="checkbox" v-model="data_detail.status"> Kích hoạt
+													</label>
+												</div>
 											</center>
 										</div>
 									</div>
@@ -111,7 +117,8 @@
 					phone : '',
 					address : '',
 					role : '',
-					avatar : ''
+					avatar : '',
+					status : 1
 				},
 				preview : '',
 			}
@@ -137,6 +144,7 @@
 						formData.append('phone', this.data_detail.phone)
 						formData.append('address', this.data_detail.address)
 						formData.append('role', this.data_detail.role)
+						formData.append('status', this.data_detail.status)
 
 						axios.post(BASE_URL + 'admin/regent/add', formData,
 							{

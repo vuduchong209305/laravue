@@ -22,13 +22,13 @@
 
     <script>
         const BASE_URL = '<?php echo url('/') . '/' ?>'
-        const _id = '<?php echo Auth::user()->id ? Auth::user()->id : '' ?>'
-        const _name = '<?php echo Auth::user()->name ? Auth::user()->name : '' ?>'
-        const _email = '<?php echo Auth::user()->email ? Auth::user()->email : '' ?>'
-        const _phone = '<?php echo Auth::user()->phone ? Auth::user()->phone : '' ?>'
+        const _id      = '<?php echo Auth::user()->id ? Auth::user()->id : '' ?>'
+        const _name    = '<?php echo Auth::user()->name ? Auth::user()->name : '' ?>'
+        const _email   = '<?php echo Auth::user()->email ? Auth::user()->email : '' ?>'
+        const _phone   = '<?php echo Auth::user()->phone ? Auth::user()->phone : '' ?>'
         const _address = '<?php echo Auth::user()->address ? Auth::user()->address : '' ?>'
-        const _avatar = '<?php echo Auth::user()->avatar ? Auth::user()->avatar : '' ?>'
-        const _role = '<?php echo Auth::user()->role ? Auth::user()->role : '' ?>'
+        const _avatar  = '<?php echo Auth::user()->avatar ? Auth::user()->avatar : '' ?>'
+        const _role    = '<?php echo Auth::user()->role ? Auth::user()->role : '' ?>'
     </script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">

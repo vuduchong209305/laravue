@@ -48,13 +48,13 @@
 									<tr v-for="item, index in listRecord" v-if="listRecord.length > 0" :key="index">
 										<td><input type="checkbox" :value="item.id" v-model="checkedId" @change="checkboxes"/></td>
 										<td><img :src="item.avatar" alt="" class="w100"></td>
-										<td>{{ item.name }}</td>
-										<td>{{ item.email }}</td>
-										<td>{{ item.phone }}</td>
-										<td>
+										<td :class="item.status == 0 ? 'line-through' : ''">{{ item.name }}</td>
+										<td :class="item.status == 0 ? 'line-through' : ''">{{ item.email }}</td>
+										<td :class="item.status == 0 ? 'line-through' : ''">{{ item.phone }}</td>
+										<td :class="item.status == 0 ? 'line-through' : ''">
 											<span :class="['label', item.role == 'admin' ? 'label-danger' : 'label-success']">{{ item.role }}</span>
 										</td>
-										<td>{{ item.address }}</td>
+										<td :class="item.status == 0 ? 'line-through' : ''">{{ item.address }}</td>
 										<td>
 											<span class="block-button">
 												<router-link :to="{ name : 'editRegent', params: { id: item.id }}" class="btn btn-xs btn-info"><i class="fa fa-edit"></i></router-link>
@@ -65,7 +65,7 @@
 								</tbody>
 							</table>
 						</div>
-						<div class="box-footer clearfix">
+						<div class="box-footer clearfix" v-if="listRecord.length > 0">
 							<div class="pull-right">
 								<div>Hiển thị {{pagination.from}} đến {{pagination.to}} của {{pagination.total}} dữ liệu</div>
 								<pagination v-bind:pagination="pagination" v-on:click.native="getListData(pagination.current_page)" :offset="4"></pagination>

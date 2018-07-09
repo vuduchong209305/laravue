@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th7 08, 2018 lúc 08:19 PM
+-- Thời gian đã tạo: Th7 09, 2018 lúc 06:19 PM
 -- Phiên bản máy phục vụ: 10.1.33-MariaDB
 -- Phiên bản PHP: 7.2.6
 
@@ -68,8 +68,9 @@ CREATE TABLE `tbl_users` (
   `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `phone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` tinyint(1) DEFAULT '0',
   `role` char(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `deleted_at` timestamp NULL DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -79,12 +80,14 @@ CREATE TABLE `tbl_users` (
 -- Đang đổ dữ liệu cho bảng `tbl_users`
 --
 
-INSERT INTO `tbl_users` (`id`, `name`, `password`, `email`, `avatar`, `phone`, `address`, `role`, `deleted_at`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Vũ Đức Hồng', '$2y$10$NSL9KYIqt0n/AnIOUO3/XubhpJHhOgo77tvtInyJOPLW48IlHOqZ6', 'vuduchong@gmail.com', '/public/admin/avatar/_MG_1352.jpg', '0987654321', 'Cẩm Phả', 'admin', NULL, 'rJnRQgYFuY7CDhV2JPqxqzELwaoNsycB39vcEfiQRYJFPPIhRYOzPsDCinQb', NULL, '2018-07-06 09:18:00'),
-(26, 'bsdbsdb', '$2y$10$UAdOqeK8Pv4PbMQKy6gWLOwjMjfhfuZmU3bBMyJJ28wDn6GaNtjEi', 'karaoke@gmail.com', '/public/admin/avatar/photo.jpg', '646436', 'bsdbsdb', 'mod', NULL, NULL, '2018-07-08 09:07:50', '2018-07-08 10:53:49'),
-(27, 'gagasg', '$2y$10$Z.EjxiKv0C.J5cqvupiaEuF8enEAFfCXwI1V4QHI.vxmcRVjVC7GK', 'vuesvsavas@gmail.com', '/public/admin/avatar/conditional-rendering-vuejs.jpg', '326236', 'gdsg', 'mod', NULL, NULL, '2018-07-08 09:08:02', '2018-07-08 10:54:09'),
-(28, 'hsdhsdh', '$2y$10$qR7BHwelaauLWHmcvGgpFu6AsHzJ0zW668buV3HP8KYsadu2awAEa', 'tegshdshsdhsdhdsh@gmail.com', '/public/admin/avatar/xsihAO.jpg', '63636', 'đshsdg', 'mod', NULL, NULL, '2018-07-08 09:08:12', '2018-07-08 10:54:12'),
-(29, 'váhsdhsdhsd', '$2y$10$fR8AaqVC2izfZAfB93lKyux3vcVKEHgs.P7skptIKtffxl9IdvKta', 'hsdhsdhsdh@gmail.com', '/public/admin/avatar/Capture.JPG', '734734734', 'sdhsdhsdh', 'mod', NULL, NULL, '2018-07-08 09:08:37', '2018-07-08 10:54:06');
+INSERT INTO `tbl_users` (`id`, `name`, `password`, `email`, `avatar`, `phone`, `address`, `status`, `role`, `deleted_at`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Vũ Đức Hồng', '$2y$10$amKMNRNJML3oYP7l/aUlJOCAc44gK211qM45RX.mssgBtN4wVgNvO', 'vuduchong@gmail.com', '/public/admin/avatar/_MG_1352.jpg', '0987654321', 'Cẩm Phả', 1, 'admin', NULL, 'yUARby2sgZFLzg7oXJQ9zNvuKWl0C7i38iyeFINbqRN9z7t28XXHpdIgXlNc', NULL, '2018-07-09 08:51:45'),
+(26, 'bsdbsdb', '$2y$10$U4/2j/Y5epXvjgM/KN8iG.eqGz6pFM1bKgYRfi5c3RwvcdgEZxgNG', 'karaoke@gmail.com', '/public/admin/avatar/photo.jpg', '646436', 'bsdbsdb', 1, 'mod', NULL, NULL, '2018-07-08 09:07:50', '2018-07-09 08:53:10'),
+(27, 'gagasg', '$2y$10$ZiZxoH2C7Uq0WvpoOlvfGu9WnXFMuG7/Q7uyGV1/fC9ZLuCIjImsm', 'vuesvsavas@gmail.com', '/public/admin/avatar/conditional-rendering-vuejs.jpg', '326236', 'gdsg', 1, 'mod', NULL, NULL, '2018-07-08 09:08:02', '2018-07-09 08:15:54'),
+(28, 'hsdhsdh', '$2y$10$i7Fp9BzwbxZLf4.jPqPrye88kpUvuWg82NjloOaVSn.2L/8CKeVe.', 'tegshdshsdhsdhdsh@gmail.com', '/public/admin/avatar/xsihAO.jpg', '63636', 'đshsdg', 1, 'mod', NULL, NULL, '2018-07-08 09:08:12', '2018-07-09 08:15:59'),
+(29, 'váhsdhsdhsd', '$2y$10$A7nQQVWqa48w15Uw/ke0teF0Z2kQtzV2Mgj/TkJWUCnXhNu0j0DQq', 'hsdhsdhsdh@gmail.com', '/public/admin/avatar/Capture.JPG', '734734734', 'sdhsdhsdh', 1, 'admin', NULL, NULL, '2018-07-08 09:08:37', '2018-07-09 08:51:38'),
+(30, 'bsbsdh62366236', '$2y$10$5gYVZz1mR54beCMZWAAhhOSebTN4naVnwBPn5exuUsE6EUodhVMjW', 'flashasasb@gmail.com', '/public/admin/avatar/Adobe-Flash-icon.png', '236236236', 'bsdbdsb', 1, 'mod', NULL, NULL, '2018-07-08 19:15:12', '2018-07-09 08:53:06'),
+(31, 'gasgasgags', '$2y$10$je8ocZbY/USG6hMt7KYa0uhGoAUnJqUT.b1gCK/dCtbSW7tZGjAWG', 'vuegasgasg@gmail.com', '/public/admin/avatar/conditional-rendering-vuejs.jpg', '326236', 'gsdgsdg', 1, 'admin', NULL, NULL, '2018-07-08 19:35:49', '2018-07-09 08:15:47');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -124,7 +127,7 @@ ALTER TABLE `tbl_migrations`
 -- AUTO_INCREMENT cho bảng `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

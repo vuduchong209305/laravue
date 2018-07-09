@@ -599,16 +599,18 @@
                 logged_in_address : '',
                 logged_in_avatar : '',
                 logged_in_role : '',
+                logged_in_id : '',
                 BASE_URL : ''
             }
         },
-        created() {
+        mounted() {
             this.logged_in_name    = _name
             this.logged_in_email   = _email
             this.logged_in_phone   = _phone
             this.logged_in_address = _address
             this.logged_in_avatar  = _avatar
             this.logged_in_role    = _role
+            this.logged_in_id      = _id
             this.BASE_URL          = BASE_URL
         },
         methods: {

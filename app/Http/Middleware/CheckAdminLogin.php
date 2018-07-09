@@ -16,7 +16,7 @@ class CheckAdminLogin
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check() && (Auth::user()->role == 'admin' || Auth::user()->role == 'mod')) {
+        if(Auth::check() && Auth::user()->status == 1 && (Auth::user()->role == 'admin' || Auth::user()->role == 'mod')) {
             return $next($request);
         } else {
             Auth::logout();

@@ -111,12 +111,13 @@ class UserController extends Controller
 
     public function index(Request $request) {
         if(!$request->keyword) {
-            $admin = User::paginate($this->per_page);
+            $admin = User::orderBy('role', 'asc')->orderBy('status', 'desc')->paginate($this->per_page);
         } else {
             $admin = User::where('email', 'like', '%' . $request->keyword . '%')
             ->orWhere('role', 'like', '%' . $request->keyword . '%')
             ->orWhere('name', 'like', '%' . $request->keyword . '%')
             ->orWhere('phone', 'like', '%' . $request->keyword . '%')
+            ->orderBy('role', 'asc')->orderBy('status', 'desc')
             ->paginate($this->per_page);
         }
         
@@ -153,8 +154,54 @@ class UserController extends Controller
             $user->phone    = $request->phone;
             $user->address  = $request->address;
             $user->role     = $request->role;
+            $user->status   = $request->status;
             $user->avatar   = $location;
 
+            $user->save();
+            $status = 'OK';
+
+        } else {
+
+            $status = $validator->errors();
+
+        }
+
+        return response()->json($status);
+    }
+
+    public function update(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'name'     => 'required',
+            'phone'    => 'required',
+            'address'  => 'required',
+            'email'    => 'unique:users',
+            'role'     => 'required',
+        ]);
+
+        if($request->hasFile('image') && $request->file('image')->isValid()) {
+
+            $image = $request->file('image');
+            $fileName = $image->getClientOriginalName();
+            $image->move(public_path('admin/avatar'), $fileName);
+            $location = '/public/admin/avatar/' . $fileName;
+
+        } else {
+            $location = $request->image;
+        }
+
+        if ($validator->passes()) {
+            $user           = User::find($request->id);
+            $user->name     = $request->name;
+            $user->phone    = $request->phone;
+            $user->address  = $request->address;
+            $user->role     = $request->role;
+            $user->status   = $request->status;
+
+            if($request->password != '') {
+                $user->password = Hash::make($request->password);
+            }
+
+            $user->avatar = $request->image == null ? '' : $location;
             $user->save();
             $status = 'OK';
 
@@ -202,49 +249,4 @@ class UserController extends Controller
         return response()->json($user);
     }
 
-    public function update(Request $request) {
-        $validator = Validator::make($request->all(), [
-            'name'     => 'required',
-            'phone'    => 'required',
-            'address'  => 'required',
-            'email'    => 'unique:users',
-            'role'     => 'required',
-        ]);
-
-        if($request->hasFile('image') && $request->file('image')->isValid()) {
-
-            $image = $request->file('image');
-            $fileName = $image->getClientOriginalName();
-            $image->move(public_path('admin/avatar'), $fileName);
-            $location = '/public/admin/avatar/' . $fileName;
-
-        } else {
-            $location = $request->image;
-        }
-
-        if ($validator->passes()) {
-
-            $user           = User::find($request->id);
-            $user->name     = $request->name;
-            $user->phone    = $request->phone;
-            $user->address  = $request->address;
-            $user->role     = $request->role;
-
-            if($request->password != '') {
-                $user->password = Hash::make($request->password);
-            }
-
-            $user->avatar = $request->image == null ? '' : $location;
-
-            $user->save();
-            $status = 'OK';
-
-        } else {
-
-            $status = $validator->errors();
-
-        }
-
-        return response()->json($status);
-    }
 }
