@@ -62359,7 +62359,12 @@ var render = function() {
                           _c("td", [
                             _c("img", {
                               staticClass: "w100",
-                              attrs: { src: item.avatar, alt: "" }
+                              attrs: {
+                                src: !item.avatar
+                                  ? "public/admin/img/no-image.png"
+                                  : item.avatar,
+                                alt: ""
+                              }
                             })
                           ]),
                           _vm._v(" "),

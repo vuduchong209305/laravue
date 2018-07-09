@@ -47,7 +47,7 @@
 								<tbody>
 									<tr v-for="item, index in listRecord" v-if="listRecord.length > 0" :key="index">
 										<td><input type="checkbox" :value="item.id" v-model="checkedId" @change="checkboxes"/></td>
-										<td><img :src="item.avatar" alt="" class="w100"></td>
+										<td><img :src="!item.avatar ? 'public/admin/img/no-image.png' : item.avatar" alt="" class="w100"></td>
 										<td :class="item.status == 0 ? 'line-through' : ''">{{ item.name }}</td>
 										<td :class="item.status == 0 ? 'line-through' : ''">{{ item.email }}</td>
 										<td :class="item.status == 0 ? 'line-through' : ''">{{ item.phone }}</td>
