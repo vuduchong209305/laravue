@@ -2,8 +2,7 @@
 	<div>
 		<section class="content-header">
 			<h1>
-				Cập nhật
-				<small>Ban quản trị</small>
+				Cập nhật<small>Ban quản trị</small>
 			</h1>
 			<ol class="breadcrumb">
 				<li><router-link :to="{name : 'home'}"><i class="fa fa-dashboard"></i> Home</router-link></li>
@@ -32,13 +31,14 @@
 														<i class="fa fa-upload"> Chọn ảnh</i>
 													</a>
 												</span>
-												
+
 												<span v-else>
 													<img :src="preview" class="w100"><br><br>
 													<a class="btn btn-sm btn-danger" v-on:click="remove">
 														<i class="fa fa-close"> Xóa</i>
 													</a>
 												</span>
+
 												<div class="checkbox">
 													<label>
 														<input type="checkbox" v-model="data_detail.status"> Kích hoạt
@@ -116,8 +116,12 @@
 			axios.get(BASE_URL + 'admin/regent/getDetail', {
 				params: {id : this.$route.params.id}
 			}).then(res => {
-				this.data_detail = res.data
-				this.preview = res.data.avatar
+				if(res.data.status == 'NOT_FOUND') {
+					this.$router.push({name: 'page404'}) 
+				} else {
+					this.data_detail = res.data
+					this.preview     = res.data.avatar
+				}
 			}).catch(e => {
 				console.log(e)
 			})

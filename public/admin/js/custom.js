@@ -8,4 +8,10 @@ $(document).ready(function(){
 		var table = $(e.target).closest('table');
 		$('td input:checkbox',table).prop('checked',this.checked);
 	})
+
 });
+
+function textAreaAdjust(o) {
+	o.style.height = "1px";
+	o.style.height = (25+o.scrollHeight)+"px";
+}

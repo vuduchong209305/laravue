@@ -43,24 +43,31 @@
                             </label>
                         </div>
                     </div>
-                    <!-- /.col -->
+
                     <div class="col-xs-4">
                         <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
                     </div>
-                    <!-- /.col -->
+
                 </div>
             </form>
+
+            <div class="social-auth-links text-center">
+                <p>- OR -</p>
+                <a href="{{ url('auth/facebook') }}"" class="btn btn-block btn-social btn-facebook btn-flat">
+                    <i class="fa fa-facebook"></i> Sign in using Facebook
+                </a>
+                <a href="#" class="btn btn-block btn-social btn-google btn-flat">
+                    <i class="fa fa-google-plus"></i> Sign in using Google+
+                </a>
+            </div>
 
             <a href="#">I forgot my password</a>
             
         </div>
-        <!-- /.login-box-body -->
-    </div>
-    <!-- /.login-box -->
 
-    <!-- jQuery 3 -->
+    </div>
+
     <script src="public/admin/js/jquery.min.js"></script>
-    <!-- Bootstrap 3.3.7 -->
     <script src="public/admin/js/bootstrap.min.js"></script>
 </body>
 

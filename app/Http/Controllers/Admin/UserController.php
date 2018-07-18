@@ -117,6 +117,7 @@ class UserController extends Controller
             ->orWhere('role', 'like', '%' . $request->keyword . '%')
             ->orWhere('name', 'like', '%' . $request->keyword . '%')
             ->orWhere('phone', 'like', '%' . $request->keyword . '%')
+            ->orWhere('address', 'like', '%' . $request->keyword . '%')
             ->orderBy('role', 'asc')->orderBy('status', 'desc')
             ->paginate($this->per_page);
         }
@@ -245,8 +246,11 @@ class UserController extends Controller
     }
 
     public function getDetail(Request $request) {
-        $user = User::findOrFail($request->id);
-        return response()->json($user);
+        $user = User::find($request->id);
+        if($user)
+            return response()->json($user);
+        else
+            return response()->json(['status' => 'NOT_FOUND']);
     }
 
 }

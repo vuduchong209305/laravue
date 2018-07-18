@@ -47,3 +47,7 @@ td > * {
 .line-through {
     text-decoration: line-through;
 }
+
+textarea{
+    overflow: hidden;
+}

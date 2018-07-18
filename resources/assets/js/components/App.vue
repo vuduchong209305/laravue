@@ -320,7 +320,7 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="#"><i class="fa fa-circle-o"></i> Danh sách</a></li>
+                                <li><router-link :to="{name : 'listProduct'}"><i class="fa fa-circle-o"></i> Danh sách</router-link></li>
                                 <li><a href="#"><i class="fa fa-circle-o"></i> Nhập kho</a></li>
                                 <li><a href="#"><i class="fa fa-circle-o"></i> Xuất kho</a></li>
                                 <li><a href="#"><i class="fa fa-circle-o"></i> Báo cáo tài chính</a></li>

@@ -2,8 +2,7 @@
 	<div>
 		<section class="content-header">
 			<h1>
-				Thêm mới
-				<small>Ban quản trị</small>
+				Thêm mới<small>Ban quản trị</small>
 			</h1>
 			<ol class="breadcrumb">
 				<li><router-link :to="{name : 'home'}"><i class="fa fa-dashboard"></i> Home</router-link></li>
@@ -25,20 +24,7 @@
 											<center>
 												<label>Avatar</label><br>
 
-												<span v-if="!data_detail.avatar">
-													<input type="file" class="form-control hidden" id="fileInput" v-on:change="onImageChange" ref="avatar" accept="image/*">
-													<img src="public/admin/img/no-image.png" class="w100"><br><br>
-													<a class="btn btn-sm btn-info" onclick="document.getElementById('fileInput').click()">
-														<i class="fa fa-upload"> Chọn ảnh</i>
-													</a>
-												</span>
-												
-												<span v-else>
-													<img :src="preview" class="w100"><br><br>
-													<a class="btn btn-sm btn-danger" v-on:click="remove">
-														<i class="fa fa-close"> Xóa</i>
-													</a>
-												</span>
+												<upload-image v-on:imageUpload="uploadImage($event)"></upload-image>
 
 												<div class="checkbox">
 													<label>
@@ -107,7 +93,9 @@
 </template>
 
 <script>
+	import UploadImage from './../../include/UploadImage'
 	export default {
+		components : { 'upload-image' : UploadImage },
 		data() {
 			return {
 				data_detail : {
@@ -119,11 +107,13 @@
 					role : '',
 					avatar : '',
 					status : 1
-				},
-				preview : '',
+				}
 			}
 		},
 		methods: {
+			uploadImage(image) {
+				this.data_detail.avatar = image
+			},
 			submit() {
 				this.$validator.validate().then(result => {
 					if (!result) {
@@ -175,21 +165,6 @@
 						})
 					}
 				})
-			},
-			onImageChange(e) {
-				if(e.target.files && e.target.files[0]) {
-					var reader = new FileReader()
-					reader.onload = (e) => {
-						this.preview = e.target.result
-					}
-					reader.readAsDataURL(e.target.files[0])
-
-					this.data_detail.avatar = this.$refs.avatar.files[0]
-				}
-			},
-			remove() {
-				this.data_detail.avatar = ''
-				this.preview = ''
 			}
 		}
 	}

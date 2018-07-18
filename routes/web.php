@@ -28,6 +28,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
 
 /*Route::any('{all}', 'Admin\UserController@getLogin')->where(['all' => '.*']);*/
 
+Route::get('auth/facebook', 'Auth\SocialController@redirectToProvider');
+Route::get('auth/facebook/callback', 'Auth\SocialController@handleProviderCallback');
+
+
 Route::any('{all}', function () {
     return view('admin.home');
 })->where(['all' => '.*']);

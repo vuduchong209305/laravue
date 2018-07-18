@@ -2,8 +2,7 @@
 	<div>
 		<section class="content-header">
 			<h1>
-				Danh sách
-				<small>Ban quản trị</small>
+				Danh sách<small>Ban quản trị</small>
 			</h1>
 			<ol class="breadcrumb">
 				<li><router-link :to="{name : 'home'}"><i class="fa fa-dashboard"></i> Home</router-link></li>
@@ -20,12 +19,14 @@
 							<router-link :to="{name : 'addRegent'}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> <span class="hidden-xs">Thêm</span></router-link>
 							<a class="btn btn-sm btn-danger" v-on:click="deleteMulti"><i class="fa fa-close"></i> <span class="hidden-xs">Xóa</span></a>
 							<div class="box-tools">
-								<div class="input-group input-group-sm" style="width: 200px;">
-									<input v-on:keypress.enter.prevent="searchKeyword" v-model="keyword" type="text" name="table_search" class="form-control pull-right" placeholder="Search" >
-									<div class="input-group-btn">
-										<button v-on:click="searchKeyword" type="button" class="btn btn-default"><i class="fa fa-search"></i></button>
+								<form @submit.prevent="searchKeyword">
+									<div class="input-group input-group-sm" style="width: 200px;">
+										<input v-model="keyword" type="text" class="form-control pull-right" placeholder="Search">
+										<div class="input-group-btn">
+											<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+										</div>
 									</div>
-								</div>
+								</form>
 							</div>
 						</div>
 						<div class="box-body table-responsive no-padding">
@@ -65,10 +66,13 @@
 								</tbody>
 							</table>
 						</div>
-						<div class="box-footer clearfix" v-if="listRecord.length > 0">
-							<div class="pull-right">
+						<div class="box-footer clearfix">
+							<div class="pull-right"  v-if="listRecord.length > 0">
 								<div>Hiển thị {{pagination.from}} đến {{pagination.to}} của {{pagination.total}} dữ liệu</div>
 								<pagination v-bind:pagination="pagination" v-on:click.native="getListData(pagination.current_page)" :offset="4"></pagination>
+							</div>
+							<div class="pull-right" v-else>
+								<p>Không có dữ liệu</p>
 							</div>
 						</div>
 					</div>
