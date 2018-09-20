@@ -293,7 +293,7 @@
                                 <i class="fa fa-dashboard"></i> <span>Trang chủ</span>
                             </router-link>
                         </li>
-                        
+
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-pie-chart"></i>
@@ -351,7 +351,7 @@
                                 <li><a href="#"><i class="fa fa-circle-o"></i> Nhân viên</a></li>
                             </ul>
                         </li>
-                        
+
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-folder"></i> <span>Quản lý đối tác</span>
@@ -378,7 +378,7 @@
                                 <li><a href="#"><i class="fa fa-circle-o"></i> Chính sách & quy định</a></li>
                             </ul>
                         </li>
-                        
+
                         <li class="header">QUẢN LÝ CHUNG</li>
                         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Cấu hình chung</span></a></li>
                         <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Lịch sử hệ thống</span></a></li>
@@ -390,9 +390,9 @@
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
-
-                <router-view/>
-
+                <transition name="fade" mode="out-in">
+                    <router-view/>
+                </transition>
             </div>
             <!-- /.content-wrapper -->
             <footer class="main-footer">
@@ -620,3 +620,12 @@
         }
     }
 </script>
+
+<style>
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .5s;
+    }
+    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+        opacity: 0;
+    }
+</style>

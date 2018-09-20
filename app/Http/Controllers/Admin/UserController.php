@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Auth;
 use File;
 use Validator;
+use Mail;
 
 class UserController extends Controller
 {
@@ -156,7 +157,7 @@ class UserController extends Controller
             $user->address  = $request->address;
             $user->role     = $request->role;
             $user->status   = $request->status;
-            $user->avatar   = $location;
+            $user->avatar   = isset($location) ? $location : '';
 
             $user->save();
             $status = 'OK';
@@ -253,4 +254,16 @@ class UserController extends Controller
             return response()->json(['status' => 'NOT_FOUND']);
     }
 
+    public function sendEmail(Request $request)
+    {
+        $input = $request->data;
+
+        Mail::send('mailfb', array('name' => $input["name"],'email' => $input["email"], 'content' => $input['comment']), function($message){
+
+            $message->to('aduka.asia@gmail.com', 'Visitor')->subject('Visitor Feedback!');
+
+        });
+
+        return response()->json(['status' => 'OK']);
+    }
 }

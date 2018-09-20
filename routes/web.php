@@ -14,6 +14,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
 		Route::post('updateProfile', 'UserController@updateProfile');
 		Route::post('updateAvatar', 'UserController@updateAvatar');
 
+		Route::post('send-email', 'UserController@sendEmail');
+
+
 		Route::group(['prefix' => 'regent'], function() {
 			Route::get('index', ['uses' => 'UserController@index']);
 			Route::post('add', ['uses' => 'UserController@store']);
